@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jelajahi Pesona Bali - Panduan Wisata Modern & Elegan</title>
+    
+    <!-- Meta SEO -->
+    <meta name="description" content="Temukan surga tersembunyi di Bali. Panduan lengkap destinasi wisata, budaya, kuliner, dan event lokal. Rencanakan liburan impian Anda dengan virtual tour 360°, jadwal kunjungan, dan pemesanan online.">
+    <meta name="keywords" content="Wisata Bali, Destinasi Bali, Liburan Bali, Panduan Wisata, Pantai Kuta, Ubud, Pura Uluwatu, Virtual Tour Bali, Tiket Wisata Bali">
+    <meta name="author" content="Gemini AI">
+
+    <!-- Favicon -->
+    <link rel="icon" href="https://placehold.co/32x32/14b8a6/ffffff?text=B">
+
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide-react@latest/dist/lucide-react.js"></script>
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    
+    <style>
+        /* Custom Styles & Dark Mode */
+        :root {
+            --primary-color: #14b8a6; /* Teal-500 */
+            --secondary-color: #0f766e; /* Teal-700 */
+            --background-light: #f8fafc; /* Slate-50 */
+            --background-dark: #0f172a; /* Slate-900 */
+            --text-light: #0f172a;
+            --text-dark: #e2e8f0; /* Slate-200 */
+            --card-light: #ffffff;
+            --card-dark: #1e293b; /* Slate-800 */
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--background-light);
+            color: var(--text-light);
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .dark {
+            --background-light: var(--background-dark);
+            --text-light: var(--text-dark);
+            --card-light: var(--card-dark);
+        }
+
+        /* Scroll Animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s, transform 0.8s;
+            transition-timing-function: cubic-bezier(0.17, 0.55, 0.55, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Sidebar Transition */
+        #sidebar {
+            transition: transform 0.3s ease-in-out;
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        .dark ::-webkit-scrollbar-track {
+            background: #2d3748;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-color);
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--secondary-color);
+        }
+
+        /* Video Background */
+        .video-bg-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+        }
+
+        #video-bg {
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            object-fit: cover;
+        }
+        
+        /* Testimonial Carousel */
+        .carousel-item {
+            display: none;
+            transition: opacity 0.5s ease-in-out;
+        }
+        .carousel-item.active {
+            display: block;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-200">
+
+    <!-- ===== HEADER / NAVBAR ===== -->
+    <header id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+        <div class="container mx-auto px-4">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo -->
+                <a href="#" class="text-2xl font-bold text-teal-500 flex items-center">
+                    <svg class="w-8 h-8 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg>
+                    Bali Guide
+                </a>
+
+                <!-- Navigasi Utama (Desktop) -->
+                <nav class="hidden lg:flex items-center space-x-8">
+                    <a href="#destinasi" class="hover:text-teal-500 transition-colors">Destinasi</a>
+                    <a href="#virtual-tour" class="hover:text-teal-500 transition-colors">Virtual Tour</a>
+                    <a href="#events" class="hover:text-teal-500 transition-colors">Event</a>
+                    <a href="#blog" class="hover:text-teal-500 transition-colors">Blog</a>
+                    <a href="#kontak" class="hover:text-teal-500 transition-colors">Kontak</a>
+                </nav>
+
+                <!-- Ikon & Toggle (Desktop) -->
+                <div class="hidden lg:flex items-center space-x-4">
+                    <button id="search-btn" class="p-2 rounded-full hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                    </button>
+                    <button id="theme-toggle" class="p-2 rounded-full hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">
+                        <svg id="theme-icon-light" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+                        <svg id="theme-icon-dark" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+                    </button>
+                    <div class="relative">
+                        <select id="lang-switcher" class="appearance-none bg-transparent py-2 pl-3 pr-8 text-sm font-medium rounded-md hover:bg-slate-200 dark:hover:bg-slate-700 focus:outline-none transition-colors">
+                            <option value="id">ID</option>
+                            <option value="en">EN</option>
+                        </select>
+                        <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tombol Hamburger (Mobile) -->
+                <button id="menu-btn" class="lg:hidden p-2 rounded-md hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ===== SIDEBAR (MOBILE) ===== -->
+    <aside id="sidebar" class="fixed top-0 right-0 h-full w-64 bg-white dark:bg-slate-800 shadow-lg transform translate-x-full z-50 lg:hidden">
+        <div class="p-4">
+            <button id="close-menu-btn" class="absolute top-4 right-4 p-2">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+            <nav class="mt-16 flex flex-col space-y-4">
+                <a href="#destinasi" class="sidebar-link hover:text-teal-500 transition-colors">Destinasi</a>
+                <a href="#virtual-tour" class="sidebar-link hover:text-teal-500 transition-colors">Virtual Tour</a>
+                <a href="#events" class="sidebar-link hover:text-teal-500 transition-colors">Event</a>
+                <a href="#blog" class="sidebar-link hover:text-teal-500 transition-colors">Blog</a>
+                <a href="#kontak" class="sidebar-link hover:text-teal-500 transition-colors">Kontak</a>
+            </nav>
+            <div class="mt-8 pt-4 border-t border-slate-200 dark:border-slate-700 flex items-center justify-around">
+                <button id="theme-toggle-mobile" class="p-2 rounded-full hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">
+                    <!-- Icons are injected by JS -->
+                </button>
+                <select id="lang-switcher-mobile" class="bg-slate-100 dark:bg-slate-700 p-2 rounded-md text-sm">
+                    <option value="id">Indonesia</option>
+                    <option value="en">English</option>
+                </select>
+            </div>
+        </div>
+    </aside>
+
+    <main>
+        <!-- ===== HERO SECTION ===== -->
+        <section class="relative h-screen flex items-center justify-center text-center text-white overflow-hidden">
+            <div class="video-bg-container">
+                <video autoplay muted loop playsinline id="video-bg">
+                    <!-- Gunakan video dengan resolusi lebih rendah untuk performa mobile -->
+                    <source src="https://assets.mixkit.co/videos/preview/mixkit-beautiful-tropical-beach-at-sunset-4764-large.mp4" type="video/mp4">
+                    Browser Anda tidak mendukung tag video.
+                </video>
+            </div>
+            <div class="absolute top-0 left-0 w-full h-full bg-black/50"></div>
+            <div class="relative z-10 p-4">
+                <h1 class="text-4xl md:text-6xl font-extrabold mb-4 drop-shadow-lg animate-fade-in-down" data-lang-id="Selamat Datang di Surga" data-lang-en="Welcome to Paradise">Selamat Datang di Surga</h1>
+                <p class="text-lg md:text-xl max-w-2xl mx-auto mb-8 drop-shadow-md animate-fade-in-up" data-lang-id="Jelajahi keindahan tak tertandingi dan budaya eksotis Pulau Dewata." data-lang-en="Explore the unparalleled beauty and exotic culture of the Island of the Gods.">Jelajahi keindahan tak tertandingi dan budaya eksotis Pulau Dewata.</p>
+                <a href="#destinasi" class="bg-teal-500 hover:bg-teal-600 text-white font-bold py-3 px-8 rounded-full text-lg transition-all duration-300 transform hover:scale-105" data-lang-id="Mulai Petualangan" data-lang-en="Start Adventure">Mulai Petualangan</a>
+            </div>
+        </section>
+
+        <!-- ===== DESKRIPSI DESTINASI & FILTER ===== -->
+        <section id="destinasi" class="py-20 bg-slate-100 dark:bg-slate-950">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-12 reveal">
+                    <h2 class="text-3xl md:text-4xl font-bold text-teal-500 mb-2" data-lang-id="Destinasi Populer" data-lang-en="Popular Destinations">Destinasi Populer</h2>
+                    <p class="max-w-2xl mx-auto text-slate-600 dark:text-slate-400" data-lang-id="Temukan tempat-tempat ikonik dan permata tersembunyi di Bali." data-lang-en="Discover iconic places and hidden gems in Bali.">Temukan tempat-tempat ikonik dan permata tersembunyi di Bali.</p>
+                </div>
+                
+                <!-- Filter Kategori -->
+                <div class="flex justify-center flex-wrap gap-2 mb-10 reveal">
+                    <button class="filter-btn active bg-teal-500 text-white py-2 px-4 rounded-full" data-filter="all">Semua</button>
+                    <button class="filter-btn bg-white dark:bg-slate-800 py-2 px-4 rounded-full" data-filter="pantai">Pantai</button>
+                    <button class="filter-btn bg-white dark:bg-slate-800 py-2 px-4 rounded-full" data-filter="pura">Pura</button>
+                    <button class="filter-btn bg-white dark:bg-slate-800 py-2 px-4 rounded-full" data-filter="alam">Alam</button>
+                    <button class="filter-btn bg-white dark:bg-slate-800 py-2 px-4 rounded-full" data-filter="budaya">Budaya</button>
+                </div>
+
+                <!-- Galeri Destinasi -->
+                <div id="destination-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Item 1 -->
+                    <div class="destination-item group relative overflow-hidden rounded-lg shadow-lg reveal" data-category="pura">
+                        <img src="data:image/jpeg;base64,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" alt="Pura Uluwatu" class="w-full h-72 object-cover transform group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 p-6 text-white">
+                            <h3 class="text-2xl font-bold">Pura Uluwatu</h3>
+                            <p class="text-sm opacity-90 mt-1">Pura megah di atas tebing dengan pemandangan matahari terbenam yang spektakuler.</p>
+                        </div>
+                    </div>
+                    <!-- Item 2 -->
+                    <div class="destination-item group relative overflow-hidden rounded-lg shadow-lg reveal" data-category="pantai">
+                        <img src="data:image/jpeg;base64,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" alt="Pantai Kuta" class="w-full h-72 object-cover transform group-hover:scale-110 transition-transform duration-500">
+                         <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 p-6 text-white">
+                            <h3 class="text-2xl font-bold">Pantai Kuta</h3>
+                            <p class="text-sm opacity-90 mt-1">Pantai paling terkenal di Bali, surga bagi para peselancar dan penikmat senja.</p>
+                        </div>
+                    </div>
+                    <!-- Item 3 -->
+                    <div class="destination-item group relative overflow-hidden rounded-lg shadow-lg reveal" data-category="alam">
+                        <img src="https://placehold.co/600x400/2ECC71/FFFFFF?text=Tegalalang" alt="Sawah Terasering Tegalalang" class="w-full h-72 object-cover transform group-hover:scale-110 transition-transform duration-500">
+                         <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 p-6 text-white">
+                            <h3 class="text-2xl font-bold">Sawah Tegalalang</h3>
+                            <p class="text-sm opacity-90 mt-1">Pemandangan sawah terasering yang hijau dan menyejukkan di kawasan Ubud.</p>
+                        </div>
+                    </div>
+                     <!-- Item 4 -->
+                    <div class="destination-item group relative overflow-hidden rounded-lg shadow-lg reveal" data-category="budaya">
+                        <img src="https://placehold.co/600x400/E74C3C/FFFFFF?text=Ubud+Market" alt="Pasar Seni Ubud" class="w-full h-72 object-cover transform group-hover:scale-110 transition-transform duration-500">
+                         <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 p-6 text-white">
+                            <h3 class="text-2xl font-bold">Pasar Seni Ubud</h3>
+                            <p class="text-sm opacity-90 mt-1">Pusat kerajinan tangan, seni, dan cinderamata khas Bali yang otentik.</p>
+                        </div>
+                    </div>
+                     <!-- Item 5 -->
+                    <div class="destination-item group relative overflow-hidden rounded-lg shadow-lg reveal" data-category="pura">
+                        <img src="https://placehold.co/600x400/9B59B6/FFFFFF?text=Pura+Tanah+Lot" alt="Pura Tanah Lot" class="w-full h-72 object-cover transform group-hover:scale-110 transition-transform duration-500">
+                         <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 p-6 text-white">
+                            <h3 class="text-2xl font-bold">Pura Tanah Lot</h3>
+                            <p class="text-sm opacity-90 mt-1">Ikon pura di tengah laut yang menawarkan siluet menawan saat matahari terbenam.</p>
+                        </div>
+                    </div>
+                     <!-- Item 6 -->
+                    <div class="destination-item group relative overflow-hidden rounded-lg shadow-lg reveal" data-category="alam">
+                        <img src="https://placehold.co/600x400/F1C40F/FFFFFF?text=Gunung+Batur" alt="Gunung Batur" class="w-full h-72 object-cover transform group-hover:scale-110 transition-transform duration-500">
+                         <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 p-6 text-white">
+                            <h3 class="text-2xl font-bold">Gunung Batur</h3>
+                            <p class="text-sm opacity-90 mt-1">Nikmati pemandangan matahari terbit yang magis dari puncak gunung berapi aktif.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== VIRTUAL TOUR 360° ===== -->
+        <section id="virtual-tour" class="py-20">
+            <div class="container mx-auto px-4 text-center reveal">
+                <h2 class="text-3xl md:text-4xl font-bold text-teal-500 mb-4">Rasakan Bali dari Rumah</h2>
+                <p class="max-w-2xl mx-auto text-slate-600 dark:text-slate-400 mb-8">Jelajahi keindahan Bali secara virtual melalui tur 360° interaktif kami.</p>
+                <div class="aspect-w-16 aspect-h-9 rounded-lg overflow-hidden shadow-2xl bg-slate-200 dark:bg-slate-800">
+                    <!-- Sematkan viewer 360° di sini, contoh menggunakan iframe placeholder -->
+                    <div class="flex items-center justify-center">
+                        <p class="text-slate-500">Konten Virtual Tour 360° akan ditampilkan di sini.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- ===== COUNTER / STATISTIK ===== -->
+        <section id="stats" class="py-20 bg-teal-600 text-white">
+            <div class="container mx-auto px-4">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                    <div class="reveal">
+                        <h3 class="text-4xl md:text-5xl font-extrabold" data-target="150">+</h3>
+                        <p class="text-lg mt-2 opacity-80">Destinasi Unik</p>
+                    </div>
+                    <div class="reveal">
+                        <h3 class="text-4xl md:text-5xl font-extrabold" data-target="5">Juta+</h3>
+                        <p class="text-lg mt-2 opacity-80">Pengunjung/Tahun</p>
+                    </div>
+                    <div class="reveal">
+                        <h3 class="text-4xl md:text-5xl font-extrabold" data-target="1000">+</h3>
+                        <p class="text-lg mt-2 opacity-80">Event Budaya</p>
+                    </div>
+                    <div class="reveal">
+                        <h3 class="text-4xl md:text-5xl font-extrabold" data-target="4.9">/5</h3>
+                        <p class="text-lg mt-2 opacity-80">Rating Pengunjung</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== ULASAN & TESTIMONI PENGUNJUNG (CAROUSEL) ===== -->
+        <section class="py-20">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-12 reveal">
+                    <h2 class="text-3xl md:text-4xl font-bold text-teal-500 mb-2">Kata Mereka Tentang Bali</h2>
+                    <p class="max-w-2xl mx-auto text-slate-600 dark:text-slate-400">Pengalaman tak terlupakan dari para pengunjung kami.</p>
+                </div>
+                <div id="testimonial-carousel" class="relative max-w-3xl mx-auto text-center reveal">
+                    <!-- Testimoni 1 -->
+                    <div class="carousel-item active">
+                        <p class="text-xl italic text-slate-700 dark:text-slate-300">"Bali benar-benar pulau surga. Pemandangannya luar biasa, budayanya kaya, dan orang-orangnya sangat ramah. Pengalaman yang tidak akan pernah saya lupakan!"</p>
+                        <p class="mt-6 font-bold text-lg">Alexandra - Australia</p>
+                    </div>
+                    <!-- Testimoni 2 -->
+                    <div class="carousel-item">
+                        <p class="text-xl italic text-slate-700 dark:text-slate-300">"Menikmati matahari terbenam di Uluwatu adalah momen magis. Saya sangat merekomendasikan Bali untuk siapa saja yang mencari ketenangan dan petualangan."</p>
+                        <p class="mt-6 font-bold text-lg">Kenji Tanaka - Jepang</p>
+                    </div>
+                    <!-- Testimoni 3 -->
+                    <div class="carousel-item">
+                        <p class="text-xl italic text-slate-700 dark:text-slate-300">"Dari sawah hijau di Ubud hingga pantai-pantai yang indah, setiap sudut Bali memiliki pesonanya sendiri. Saya pasti akan kembali lagi!"</p>
+                        <p class="mt-6 font-bold text-lg">Sarah & Tom - Inggris</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== BLOG & CUACA ===== -->
+        <section id="blog" class="py-20 bg-slate-100 dark:bg-slate-950">
+            <div class="container mx-auto px-4">
+                <div class="flex flex-wrap lg:flex-nowrap gap-12">
+                    <!-- Artikel / Blog Wisata -->
+                    <div class="w-full lg:w-2/3 reveal">
+                        <h2 class="text-3xl font-bold mb-8 text-teal-500">Panduan & Cerita dari Bali</h2>
+                        <div class="space-y-8">
+                            <!-- Post 1 -->
+                            <div class="flex flex-col sm:flex-row items-center gap-6 bg-white dark:bg-slate-800 p-4 rounded-lg shadow-sm">
+                                <img src="https://placehold.co/200x150/16A085/FFFFFF?text=Kuliner" alt="Kuliner Bali" class="w-full sm:w-48 h-36 object-cover rounded-md">
+                                <div>
+                                    <p class="text-sm text-slate-500">Kuliner • 10 Okt 2025</p>
+                                    <h3 class="text-xl font-semibold my-1 hover:text-teal-500 cursor-pointer">5 Makanan Khas Bali yang Wajib Anda Coba</h3>
+                                    <p class="text-slate-600 dark:text-slate-400 text-sm">Dari Babi Guling hingga Sate Lilit, jelajahi cita rasa otentik Pulau Dewata.</p>
+                                </div>
+                            </div>
+                            <!-- Post 2 -->
+                            <div class="flex flex-col sm:flex-row items-center gap-6 bg-white dark:bg-slate-800 p-4 rounded-lg shadow-sm">
+                                <img src="https://placehold.co/200x150/2980B9/FFFFFF?text=Tips" alt="Tips Wisata" class="w-full sm:w-48 h-36 object-cover rounded-md">
+                                <div>
+                                    <p class="text-sm text-slate-500">Tips • 05 Okt 2025</p>
+                                    <h3 class="text-xl font-semibold my-1 hover:text-teal-500 cursor-pointer">Tips Berwisata Hemat dan Aman di Bali</h3>
+                                    <p class="text-slate-600 dark:text-slate-400 text-sm">Rencanakan liburan Anda dengan cerdas tanpa menguras kantong.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Info & Cuaca -->
+                    <div class="w-full lg:w-1/3 reveal">
+                        <div class="bg-white dark:bg-slate-800 p-6 rounded-lg shadow-md">
+                            <h3 class="text-xl font-bold mb-4">Info Penting</h3>
+                            <!-- Cuaca & Kondisi Terkini -->
+                            <div id="weather-widget" class="mb-6">
+                                <h4 class="font-semibold mb-2">Cuaca Saat Ini di Denpasar</h4>
+                                <div class="flex items-center justify-between p-4 bg-slate-50 dark:bg-slate-700 rounded-lg">
+                                    <div id="weather-info">
+                                        <p class="text-4xl font-bold">--°C</p>
+                                        <p class="text-sm">Memuat data...</p>
+                                    </div>
+                                    <img id="weather-icon" src="https://placehold.co/64x64/FFFFFF/FFFFFF?text=" alt="ikon cuaca" class="w-16 h-16">
+                                </div>
+                            </div>
+                            <!-- Event & Kegiatan Lokal -->
+                            <div>
+                                <h4 class="font-semibold mb-2">Event Terdekat</h4>
+                                <ul class="space-y-3 text-sm">
+                                    <li class="flex items-start">
+                                        <svg class="w-4 h-4 mr-2 mt-1 text-teal-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                                        <span><strong>25 Nov:</strong> Festival Seni Ubud</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <svg class="w-4 h-4 mr-2 mt-1 text-teal-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                                        <span><strong>31 Des:</strong> Pesta Kembang Api di Pantai Kuta</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== FORM KONTAK, PEMESANAN & PETA ===== -->
+        <section id="kontak" class="py-20">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-12 reveal">
+                    <h2 class="text-3xl md:text-4xl font-bold text-teal-500 mb-2">Rencanakan Perjalanan Anda</h2>
+                    <p class="max-w-2xl mx-auto text-slate-600 dark:text-slate-400">Hubungi kami untuk reservasi, atau berikan saran untuk membuat layanan kami lebih baik.</p>
+                </div>
+                <div class="flex flex-wrap-reverse lg:flex-wrap gap-8">
+                    <!-- Form -->
+                    <div class="w-full lg:w-1/2 bg-white dark:bg-slate-800 p-8 rounded-lg shadow-lg reveal">
+                        <form id="contact-form">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                                <div>
+                                    <label for="name" class="block text-sm font-medium mb-1">Nama Lengkap</label>
+                                    <input type="text" id="name" name="name" required class="w-full p-2 border border-slate-300 dark:border-slate-600 rounded-md bg-slate-50 dark:bg-slate-700 focus:ring-2 focus:ring-teal-500 focus:outline-none">
+                                </div>
+                                <div>
+                                    <label for="email" class="block text-sm font-medium mb-1">Alamat Email</label>
+                                    <input type="email" id="email" name="email" required class="w-full p-2 border border-slate-300 dark:border-slate-600 rounded-md bg-slate-50 dark:bg-slate-700 focus:ring-2 focus:ring-teal-500 focus:outline-none">
+                                </div>
+                            </div>
+                            <div class="mb-4">
+                                <label for="subject" class="block text-sm font-medium mb-1">Subjek</label>
+                                <select id="subject" name="subject" class="w-full p-2 border border-slate-300 dark:border-slate-600 rounded-md bg-slate-50 dark:bg-slate-700 focus:ring-2 focus:ring-teal-500 focus:outline-none">
+                                    <option>Pemesanan / Reservasi</option>
+                                    <option>Pertanyaan Umum</option>
+                                    <option>Saran dan Penilaian</option>
+                                </select>
+                            </div>
+                            <div class="mb-4">
+                                <label for="message" class="block text-sm font-medium mb-1">Pesan atau Detail Reservasi</label>
+                                <textarea id="message" name="message" rows="5" required class="w-full p-2 border border-slate-300 dark:border-slate-600 rounded-md bg-slate-50 dark:bg-slate-700 focus:ring-2 focus:ring-teal-500 focus:outline-none"></textarea>
+                            </div>
+                            <button type="submit" class="w-full bg-teal-500 hover:bg-teal-600 text-white font-bold py-3 px-6 rounded-md transition-colors">Kirim Pesan</button>
+                        </form>
+                        <p id="form-status" class="mt-4 text-center"></p>
+                    </div>
+                    <!-- Peta & Info -->
+                    <div class="w-full lg:w-1/2 reveal">
+                        <div class="aspect-w-16 aspect-h-9 rounded-lg overflow-hidden shadow-lg mb-6">
+                            <!-- Map Integration -->
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d252433.9163207904!2d115.0743283626217!3d-8.652702221663919!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd2403b7ee97939%3A0x297340b6138e7181!2sBali!5e0!3m2!1sen!2sid!4v1672535443361!5m2!1sen!2sid" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        </div>
+                        <div class="space-y-3 text-slate-600 dark:text-slate-400">
+                             <p class="flex items-center"><svg class="w-5 h-5 mr-3 text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg> Denpasar, Bali, Indonesia</p>
+                            <p class="flex items-center"><svg class="w-5 h-5 mr-3 text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg> kontak@baliguide.com</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="bg-slate-800 dark:bg-slate-950 text-slate-300">
+        <div class="container mx-auto px-4 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-lg font-semibold text-white mb-4">Bali Guide</h3>
+                    <p class="text-sm">Panduan wisata modern Anda untuk menjelajahi keajaiban Pulau Bali.</p>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold text-white mb-4">Navigasi</h3>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#destinasi" class="hover:text-teal-400">Destinasi</a></li>
+                        <li><a href="#events" class="hover:text-teal-400">Event</a></li>
+                        <li><a href="#blog" class="hover:text-teal-400">Blog</a></li>
+                        <li><a href="#kontak" class="hover:text-teal-400">Kontak</a></li>
+                    </ul>
+                </div>
+                 <div>
+                    <h3 class="text-lg font-semibold text-white mb-4">Legal</h3>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-teal-400">Kebijakan Privasi</a></li>
+                        <li><a href="#" class="hover:text-teal-400">Syarat & Ketentuan</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold text-white mb-4">Ikuti Kami</h3>
+                    <div class="flex space-x-4" id="social-share">
+                        <a href="#" class="hover:text-teal-400" aria-label="Facebook"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v2.385z"></path></svg></a>
+                        <a href="#" class="hover:text-teal-400" aria-label="Instagram"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.85s-.012 3.584-.07 4.85c-.148 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07s-3.584-.012-4.85-.07c-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.85s.012-3.584.07-4.85c.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.85-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948s.014 3.667.072 4.947c.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072s3.667-.014 4.947-.072c4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.947s-.014-3.667-.072-4.947c-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.689-.073-4.948-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.162 6.162 6.162 6.162-2.759 6.162-6.162-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4s1.791-4 4-4 4 1.79 4 4-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44 1.441-.645 1.441-1.44-.645-1.44-1.441-1.44z"></path></svg></a>
+                        <a href="#" class="hover:text-teal-400" aria-label="Twitter"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616v.064c0 2.298 1.634 4.212 3.793 4.649-.65.177-1.34.23-2.04.188.608 1.923 2.368 3.24 4.465 3.28-1.716 1.34-3.837 2.068-6.08 1.88C.893 21.01 3.32 22 5.928 22c7.11 0 11.12-5.893 10.82-11.45 1.049-.756 1.91-1.706 2.52-2.784z"></path></svg></a>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-8 pt-8 border-t border-slate-700 text-center text-sm">
+                <p>&copy; <span id="copyright-year"></span> Bali Guide. Didesain dengan ❤️ oleh Gemini AI.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ===== CHATBOT / LIVE CHAT ===== -->
+    <div id="chatbot-container" class="fixed bottom-5 right-5 z-40">
+        <button id="chatbot-toggle" class="bg-teal-500 text-white w-14 h-14 rounded-full shadow-lg flex items-center justify-center transform hover:scale-110 transition-transform">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
+        </button>
+        <div id="chatbot-window" class="hidden absolute bottom-20 right-0 w-80 h-96 bg-white dark:bg-slate-800 rounded-lg shadow-2xl flex flex-col">
+            <div class="p-4 bg-teal-500 text-white rounded-t-lg">
+                <h3 class="font-bold">Asisten Wisata Bali</h3>
+            </div>
+            <div class="flex-grow p-4 overflow-y-auto text-sm text-slate-800 dark:text-slate-200">
+                <p class="bg-slate-100 dark:bg-slate-700 p-2 rounded-lg self-start max-w-xs">Halo! Ada yang bisa saya bantu untuk merencanakan liburan Anda di Bali?</p>
+            </div>
+            <div class="p-2 border-t border-slate-200 dark:border-slate-700">
+                <input type="text" placeholder="Ketik pesan..." class="w-full p-2 border border-slate-300 dark:border-slate-600 rounded-md bg-slate-50 dark:bg-slate-700 focus:outline-none">
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== SEARCH BAR MODAL ===== -->
+    <div id="search-modal" class="hidden fixed inset-0 bg-black/70 z-50 flex items-start justify-center pt-20">
+        <div class="bg-white dark:bg-slate-800 p-4 rounded-lg w-full max-w-xl relative">
+            <button id="close-search-btn" class="absolute top-4 right-4 p-2">
+                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+            <input type="search" placeholder="Cari destinasi, event, atau artikel..." class="w-full text-lg p-4 bg-transparent focus:outline-none">
+        </div>
+    </div>
+
+    <!-- Analytics Integration (Placeholder) -->
+    <!-- Ganti dengan kode pelacakan Google Analytics atau sejenisnya -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=YOUR_TRACKING_ID"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'YOUR_TRACKING_ID');
+    </script>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+
+        // =======================================================
+        // DARK / LIGHT MODE TOGGLE
+        // =======================================================
+        const themeToggle = document.getElementById('theme-toggle');
+        const themeToggleMobile = document.getElementById('theme-toggle-mobile');
+        const themeIconLight = document.getElementById('theme-icon-light');
+        const themeIconDark = document.getElementById('theme-icon-dark');
+        const html = document.documentElement;
+
+        const updateThemeIcons = () => {
+            if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                themeIconLight.classList.remove('hidden');
+                themeIconDark.classList.add('hidden');
+                themeToggleMobile.innerHTML = themeIconLight.outerHTML;
+            } else {
+                themeIconLight.classList.add('hidden');
+                themeIconDark.classList.remove('hidden');
+                themeToggleMobile.innerHTML = themeIconDark.outerHTML;
+            }
+        };
+
+        const toggleTheme = () => {
+            const isDark = html.classList.toggle('dark');
+            localStorage.theme = isDark ? 'dark' : 'light';
+            updateThemeIcons();
+        };
+
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            html.classList.add('dark');
+        } else {
+            html.classList.remove('dark');
+        }
+        updateThemeIcons();
+        themeToggle.addEventListener('click', toggleTheme);
+        themeToggleMobile.addEventListener('click', toggleTheme);
+
+        // =======================================================
+        // NAVBAR SCROLL BEHAVIOR
+        // =======================================================
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('bg-white/80', 'dark:bg-slate-900/80', 'backdrop-blur-sm', 'shadow-md');
+            } else {
+                navbar.classList.remove('bg-white/80', 'dark:bg-slate-900/80', 'backdrop-blur-sm', 'shadow-md');
+            }
+        });
+
+        // =======================================================
+        // MOBILE MENU (SIDEBAR)
+        // =======================================================
+        const menuBtn = document.getElementById('menu-btn');
+        const closeMenuBtn = document.getElementById('close-menu-btn');
+        const sidebar = document.getElementById('sidebar');
+        const sidebarLinks = document.querySelectorAll('.sidebar-link');
+
+        const openSidebar = () => sidebar.classList.replace('translate-x-full', 'translate-x-0');
+        const closeSidebar = () => sidebar.classList.replace('translate-x-0', 'translate-x-full');
+
+        menuBtn.addEventListener('click', openSidebar);
+        closeMenuBtn.addEventListener('click', closeSidebar);
+        sidebarLinks.forEach(link => link.addEventListener('click', closeSidebar));
+
+        // =======================================================
+        // SCROLL ANIMATION
+        // =======================================================
+        const revealElements = document.querySelectorAll('.reveal');
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.1 });
+        revealElements.forEach(el => revealObserver.observe(el));
+
+        // =======================================================
+        // COUNTER / STATS ANIMATION
+        // =======================================================
+        const statsSection = document.getElementById('stats');
+        const counters = statsSection.querySelectorAll('[data-target]');
+        let animated = false;
+
+        const statsObserver = new IntersectionObserver((entries) => {
+            if (entries[0].isIntersecting && !animated) {
+                counters.forEach(counter => {
+                    const target = +counter.dataset.target;
+                    const text = counter.innerText.replace(/[0-9.]/g, ''); // Extract suffix like '+', '/5'
+                    
+                    const updateCount = () => {
+                        const count = +counter.innerText.replace(/\D/g, ''); // Extract current number
+                        const increment = target / 200;
+
+                        if (count < target) {
+                            counter.innerText = Math.ceil(count + increment) + text;
+                            setTimeout(updateCount, 10);
+                        } else {
+                            counter.innerText = target + text;
+                        }
+                    };
+                    updateCount();
+                });
+                animated = true;
+            }
+        }, { threshold: 0.5 });
+        
+        statsObserver.observe(statsSection);
+
+        // =======================================================
+        // DESTINATION FILTER
+        // =======================================================
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const destinationItems = document.querySelectorAll('.destination-item');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => {
+                    b.classList.remove('active', 'bg-teal-500', 'text-white');
+                    b.classList.add('bg-white', 'dark:bg-slate-800');
+                });
+                btn.classList.add('active', 'bg-teal-500', 'text-white');
+                btn.classList.remove('bg-white', 'dark:bg-slate-800');
+
+                const filter = btn.dataset.filter;
+                destinationItems.forEach(item => {
+                    if (filter === 'all' || item.dataset.category === filter) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+        
+        // =======================================================
+        // TESTIMONIAL CAROUSEL
+        // =======================================================
+        const carouselItems = document.querySelectorAll('.carousel-item');
+        let currentItem = 0;
+        setInterval(() => {
+            carouselItems[currentItem].classList.remove('active');
+            currentItem = (currentItem + 1) % carouselItems.length;
+            carouselItems[currentItem].classList.add('active');
+        }, 5000); // Ganti setiap 5 detik
+
+        // =======================================================
+        // SEARCH MODAL
+        // =======================================================
+        const searchBtn = document.getElementById('search-btn');
+        const searchModal = document.getElementById('search-modal');
+        const closeSearchBtn = document.getElementById('close-search-btn');
+
+        const openSearch = () => searchModal.classList.remove('hidden');
+        const closeSearch = () => searchModal.classList.add('hidden');
+
+        searchBtn.addEventListener('click', openSearch);
+        closeSearchBtn.addEventListener('click', closeSearch);
+        searchModal.addEventListener('click', (e) => {
+            if (e.target === searchModal) closeSearch();
+        });
+        
+        // =======================================================
+        // CHATBOT
+        // =======================================================
+        const chatbotToggle = document.getElementById('chatbot-toggle');
+        const chatbotWindow = document.getElementById('chatbot-window');
+        chatbotToggle.addEventListener('click', () => {
+            chatbotWindow.classList.toggle('hidden');
+        });
+
+        // =======================================================
+        // WEATHER WIDGET
+        // =======================================================
+        const fetchWeather = () => {
+            // Data tiruan untuk mencegah galat API key.
+            const mockWeatherData = {
+                main: { temp: 29 },
+                weather: [{ description: 'sedikit berawan', icon: '02d' }]
+            };
+            
+            try {
+                // Mensimulasikan jeda jaringan
+                setTimeout(() => {
+                    const data = mockWeatherData;
+                    document.querySelector('#weather-info p:first-child').textContent = `${Math.round(data.main.temp)}°C`;
+                    document.querySelector('#weather-info p:last-child').textContent = data.weather[0].description;
+                    document.getElementById('weather-icon').src = `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
+                    document.getElementById('weather-icon').alt = data.weather[0].description;
+                }, 500); // Jeda 0.5 detik
+            } catch (error) {
+                console.error("Gagal menampilkan data cuaca:", error);
+                document.querySelector('#weather-info p:last-child').textContent = 'Gagal memuat data';
+            }
+        };
+        fetchWeather();
+        
+        // =======================================================
+        // CONTACT FORM
+        // =======================================================
+        const contactForm = document.getElementById('contact-form');
+        const formStatus = document.getElementById('form-status');
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            formStatus.textContent = 'Mengirim pesan...';
+            // Simulasi pengiriman form
+            setTimeout(() => {
+                formStatus.textContent = 'Terima kasih! Pesan Anda telah terkirim.';
+                formStatus.classList.add('text-green-500');
+                contactForm.reset();
+                 setTimeout(() => {
+                    formStatus.textContent = '';
+                    formStatus.classList.remove('text-green-500');
+                }, 5000);
+            }, 1500);
+        });
+
+        // =======================================================
+        // LANGUAGE SWITCHER
+        // =======================================================
+        const setupLangSwitcher = (switcherId) => {
+             document.getElementById(switcherId).addEventListener('change', (e) => {
+                const selectedLang = e.target.value;
+                document.querySelectorAll('[data-lang-id]').forEach(el => {
+                    el.textContent = el.dataset[`lang-${selectedLang}`];
+                });
+                // Sync other switcher
+                const otherId = switcherId === 'lang-switcher' ? 'lang-switcher-mobile' : 'lang-switcher';
+                document.getElementById(otherId).value = selectedLang;
+            });
+        }
+        setupLangSwitcher('lang-switcher');
+        setupLangSwitcher('lang-switcher-mobile');
+        
+        // =======================================================
+        // FOOTER COPYRIGHT YEAR
+        // =======================================================
+        document.getElementById('copyright-year').textContent = new Date().getFullYear();
+    });
+    </script>
+</body>
+</html>
+
