@@ -1,1297 +1,630 @@
-<!doctype html>
-<html lang="id">
- <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Wisata Yogyakarta - Destinasi Terbaik di Kota Gudeg</title>
-  <meta name="description" content="Jelajahi keindahan destinasi wisata Yogyakarta. Temukan tempat-tempat menarik, budaya, dan kuliner khas Jogja.">
-  <meta name="keywords" content="wisata yogyakarta, jogja, destinasi wisata, budaya, kuliner, malioboro, borobudur">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="/_sdk/data_sdk.js"></script>
-  <script src="/_sdk/element_sdk.js"></script>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-  <style>
-        body {
-            box-sizing: border-box;
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO Meta Tags -->
+    <title>Pesona Yogyakarta - Temukan Keajaiban Destinasi Wisata Jogja</title>
+    <meta name="description" content="Jelajahi destinasi wisata terbaik di Yogyakarta. Dari candi bersejarah, pantai eksotis, hingga kuliner legendaris. Rencanakan liburan impian Anda di Jogja.">
+    <meta name="keywords" content="Wisata Yogyakarta, Destinasi Jogja, Liburan di Yogyakarta, Candi Borobudur, Candi Prambanan, Pantai Parangtritis, Malioboro">
+    <meta name="author" content="Pesona Yogyakarta">
+    <link rel="canonical" href="https://pesona-yogyakarta.com/">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://pesona-yogyakarta.com/">
+    <meta property="og:title" content="Pesona Yogyakarta - Temukan Keajaiban Destinasi Wisata Jogja">
+    <meta property="og:description" content="Jelajahi destinasi wisata terbaik di Yogyakarta, dari candi bersejarah hingga pantai eksotis.">
+    <meta property="og:image" content="https://placehold.co/1200x630/003366/FFFFFF?text=Pesona+Yogyakarta">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://pesona-yogyakarta.com/">
+    <meta property="twitter:title" content="Pesona Yogyakarta - Temukan Keajaiban Destinasi Wisata Jogja">
+    <meta property="twitter:description" content="Jelajahi destinasi wisata terbaik di Yogyakarta, dari candi bersejarah hingga pantai eksotis.">
+    <meta property="twitter:image" content="https://placehold.co/1200x630/003366/FFFFFF?text=Pesona+Yogyakarta">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="https://placehold.co/32x32/003366/FFFFFF?text=PY" type="image/png">
+
+    <!-- Scripts and Libraries -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Analytics Integration (Tempatkan kode Google Analytics atau sejenisnya di sini) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=YOUR_GA_ID"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'YOUR_GA_ID');
+    </script>
+    
+    <style>
+        :root {
+            --primary-light: #F3F4F6; /* gray-100 */
+            --secondary-light: #FFFFFF;
+            --text-light: #1F2937; /* gray-800 */
+            --accent-light: #3B82F6; /* blue-500 */
+            --primary-dark: #1F2937; /* gray-800 */
+            --secondary-dark: #374151; /* gray-700 */
+            --text-dark: #F9FAFB; /* gray-50 */
+            --accent-dark: #60A5FA; /* blue-400 */
         }
-        
+        .light-mode {
+            --bg-primary: var(--primary-light);
+            --bg-secondary: var(--secondary-light);
+            --text-primary: var(--text-light);
+            --accent: var(--accent-light);
+        }
+        .dark-mode {
+            --bg-primary: var(--primary-dark);
+            --bg-secondary: var(--secondary-dark);
+            --text-primary: var(--text-dark);
+            --accent: var(--accent-dark);
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .scroll-animation {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .scroll-animation.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
         .parallax {
             background-attachment: fixed;
             background-position: center;
             background-repeat: no-repeat;
             background-size: cover;
         }
-        
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.6s ease;
-        }
-        
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        .chatbot {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            z-index: 1000;
-        }
-        
-        .carousel-container {
-            overflow: hidden;
-        }
-        
-        .carousel-track {
-            display: flex;
-            transition: transform 0.5s ease;
-        }
-        
-        .weather-widget {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        }
-        
-        .glass-effect {
-            backdrop-filter: blur(10px);
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-        
-        .dark .glass-effect {
-            background: rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .counter {
-            font-variant-numeric: tabular-nums;
-        }
-        
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-        }
-        
-        .float-animation {
-            animation: float 3s ease-in-out infinite;
-        }
-        
-        .video-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
+        .video-bg {
+            position: absolute;
+            top: 50%;
+            left: 50%;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.9);
-            z-index: 9999;
-            display: none;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .map-container {
-            height: 400px;
-            background: #f0f0f0;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-        }
-        
-        .virtual-tour {
-            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
-            border-radius: 50%;
-            width: 80px;
-            height: 80px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: transform 0.3s ease;
-        }
-        
-        .virtual-tour:hover {
-            transform: scale(1.1);
+            object-fit: cover;
+            transform: translate(-50%, -50%);
+            z-index: -1;
+            filter: brightness(0.5);
         }
     </style>
-  <style>@view-transition { navigation: auto; }</style>
- </head>
- <body class="font-sans transition-colors duration-300"><!-- Header / Navbar -->
-  <header class="fixed top-0 w-full z-50 glass-effect">
-   <nav class="container mx-auto px-4 py-4">
-    <div class="flex items-center justify-between">
-     <div class="flex items-center space-x-2"><i class="fas fa-mountain text-2xl text-blue-600"></i> <span id="site-title" class="text-xl font-bold">Wisata Yogyakarta</span>
-     </div>
-     <div class="hidden md:flex items-center space-x-6"><a href="#home" class="hover:text-blue-600 transition-colors">Beranda</a> <a href="#destinations" class="hover:text-blue-600 transition-colors">Destinasi</a> <a href="#gallery" class="hover:text-blue-600 transition-colors">Galeri</a> <a href="#events" class="hover:text-blue-600 transition-colors">Event</a> <a href="#blog" class="hover:text-blue-600 transition-colors">Blog</a> <a href="#contact" class="hover:text-blue-600 transition-colors">Kontak</a>
-     </div>
-     <div class="flex items-center space-x-4"><!-- Language Switcher --> <select id="language-switcher" class="bg-transparent border border-gray-300 rounded px-2 py-1 text-sm"> <option value="id">ID</option> <option value="en">EN</option> </select> <!-- Dark Mode Toggle --> <button id="dark-mode-toggle" class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"> <i class="fas fa-moon"></i> </button> <!-- Mobile Menu --> <button id="mobile-menu-toggle" class="md:hidden p-2"> <i class="fas fa-bars"></i> </button>
-     </div>
-    </div><!-- Mobile Menu -->
-    <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4">
-     <div class="flex flex-col space-y-2"><a href="#home" class="py-2 hover:text-blue-600 transition-colors">Beranda</a> <a href="#destinations" class="py-2 hover:text-blue-600 transition-colors">Destinasi</a> <a href="#gallery" class="py-2 hover:text-blue-600 transition-colors">Galeri</a> <a href="#events" class="py-2 hover:text-blue-600 transition-colors">Event</a> <a href="#blog" class="py-2 hover:text-blue-600 transition-colors">Blog</a> <a href="#contact" class="py-2 hover:text-blue-600 transition-colors">Kontak</a>
-     </div>
-    </div>
-   </nav>
-  </header><!-- Hero Section -->
-  <section id="home" class="min-h-screen parallax flex items-center justify-center relative" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 1200 800%22><rect fill=%22%23667eea%22 width=%221200%22 height=%22800%22/><path fill=%22%23764ba2%22 d=%22M0,400 Q300,200 600,400 T1200,400 L1200,800 L0,800 Z%22/></svg>')">
-   <div class="text-center text-white z-10 fade-in">
-    <h1 id="hero-title" class="text-5xl md:text-7xl font-bold mb-6 float-animation">Jelajahi Keindahan Yogyakarta</h1>
-    <p id="hero-subtitle" class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">Temukan destinasi wisata terbaik di Kota Gudeg yang kaya akan budaya, sejarah, dan kuliner lezat</p><!-- Search Bar -->
-    <div class="max-w-2xl mx-auto mb-8">
-     <div class="relative"><input type="text" id="search-input" placeholder="Cari destinasi wisata..." class="w-full px-6 py-4 rounded-full text-gray-800 text-lg focus:outline-none focus:ring-4 focus:ring-blue-300"> <button id="search-btn" class="absolute right-2 top-2 bg-blue-600 text-white px-6 py-2 rounded-full hover:bg-blue-700 transition-colors"> <i class="fas fa-search"></i> </button>
-     </div>
-    </div>
-    <div class="flex flex-col sm:flex-row gap-4 justify-center"><button id="explore-btn" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-full text-lg font-semibold transition-all transform hover:scale-105"> Jelajahi Sekarang </button> <button id="virtual-tour-btn" class="bg-transparent border-2 border-white hover:bg-white hover:text-gray-800 text-white px-8 py-4 rounded-full text-lg font-semibold transition-all"> Virtual Tour 360° </button>
-    </div>
-   </div><!-- Scroll Indicator -->
-   <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce"><i class="fas fa-chevron-down text-white text-2xl"></i>
-   </div>
-  </section><!-- Statistics Counter -->
-  <section class="py-16 bg-gray-50 dark:bg-gray-800">
-   <div class="container mx-auto px-4">
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-     <div class="fade-in">
-      <div class="counter text-4xl font-bold text-blue-600 mb-2" data-target="150">
-       0
-      </div>
-      <p class="text-gray-600 dark:text-gray-300">Destinasi Wisata</p>
-     </div>
-     <div class="fade-in">
-      <div class="counter text-4xl font-bold text-green-600 mb-2" data-target="50000">
-       0
-      </div>
-      <p class="text-gray-600 dark:text-gray-300">Pengunjung/Bulan</p>
-     </div>
-     <div class="fade-in">
-      <div class="counter text-4xl font-bold text-purple-600 mb-2" data-target="25">
-       0
-      </div>
-      <p class="text-gray-600 dark:text-gray-300">Event Budaya</p>
-     </div>
-     <div class="fade-in">
-      <div class="counter text-4xl font-bold text-orange-600 mb-2" data-target="4.8">
-       0
-      </div>
-      <p class="text-gray-600 dark:text-gray-300">Rating Pengunjung</p>
-     </div>
-    </div>
-   </div>
-  </section><!-- Weather Widget -->
-  <section class="py-8">
-   <div class="container mx-auto px-4">
-    <div class="weather-widget rounded-2xl p-6 text-white text-center max-w-md mx-auto">
-     <h3 class="text-xl font-semibold mb-4">Cuaca Yogyakarta Hari Ini</h3>
-     <div class="flex items-center justify-center space-x-4"><i class="fas fa-sun text-4xl"></i>
-      <div>
-       <div class="text-3xl font-bold">
-        28°C
-       </div>
-       <div class="text-sm opacity-90">
-        Cerah Berawan
-       </div>
-      </div>
-     </div>
-     <div class="mt-4 text-sm opacity-90">
-      Kelembaban: 65% | Angin: 12 km/h
-     </div>
-    </div>
-   </div>
-  </section><!-- Destinations Section -->
-  <section id="destinations" class="py-20">
-   <div class="container mx-auto px-4">
-    <div class="text-center mb-16 fade-in">
-     <h2 class="text-4xl font-bold mb-4">Destinasi Populer</h2>
-     <p class="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">Jelajahi tempat-tempat menakjubkan yang wajib dikunjungi di Yogyakarta</p>
-    </div><!-- Filter Categories -->
-    <div class="flex flex-wrap justify-center gap-4 mb-12"><button class="filter-btn active bg-blue-600 text-white px-6 py-2 rounded-full" data-filter="all">Semua</button> <button class="filter-btn bg-gray-200 dark:bg-gray-700 px-6 py-2 rounded-full" data-filter="budaya">Budaya</button> <button class="filter-btn bg-gray-200 dark:bg-gray-700 px-6 py-2 rounded-full" data-filter="alam">Alam</button> <button class="filter-btn bg-gray-200 dark:bg-gray-700 px-6 py-2 rounded-full" data-filter="kuliner">Kuliner</button> <button class="filter-btn bg-gray-200 dark:bg-gray-700 px-6 py-2 rounded-full" data-filter="belanja">Belanja</button>
-    </div>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="destinations-grid"><!-- Destination Cards -->
-     <div class="destination-card bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all transform hover:scale-105 fade-in" data-category="budaya">
-      <div class="h-64 bg-gradient-to-br from-orange-400 to-red-500 relative">
-       <div class="absolute inset-0 flex items-center justify-center"><i class="fas fa-mosque text-6xl text-white opacity-80"></i>
-       </div>
-       <div class="virtual-tour absolute top-4 right-4" onclick="openVirtualTour('Keraton Yogyakarta')"><i class="fas fa-vr-cardboard text-white text-xl"></i>
-       </div>
-      </div>
-      <div class="p-6">
-       <h3 class="text-xl font-bold mb-2">Keraton Yogyakarta</h3>
-       <p class="text-gray-600 dark:text-gray-300 mb-4">Istana Sultan yang kaya akan sejarah dan budaya Jawa</p>
-       <div class="flex items-center justify-between">
-        <div class="flex items-center space-x-1"><i class="fas fa-star text-yellow-400"></i> <span class="text-sm">4.8 (2,341 ulasan)</span>
-        </div><button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors"> Detail </button>
-       </div>
-      </div>
-     </div>
-     <div class="destination-card bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all transform hover:scale-105 fade-in" data-category="budaya">
-      <div class="h-64 bg-gradient-to-br from-green-400 to-blue-500 relative">
-       <div class="absolute inset-0 flex items-center justify-center"><i class="fas fa-monument text-6xl text-white opacity-80"></i>
-       </div>
-       <div class="virtual-tour absolute top-4 right-4" onclick="openVirtualTour('Borobudur')"><i class="fas fa-vr-cardboard text-white text-xl"></i>
-       </div>
-      </div>
-      <div class="p-6">
-       <h3 class="text-xl font-bold mb-2">Candi Borobudur</h3>
-       <p class="text-gray-600 dark:text-gray-300 mb-4">Warisan dunia UNESCO yang memukau</p>
-       <div class="flex items-center justify-between">
-        <div class="flex items-center space-x-1"><i class="fas fa-star text-yellow-400"></i> <span class="text-sm">4.9 (5,672 ulasan)</span>
-        </div><button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors"> Detail </button>
-       </div>
-      </div>
-     </div>
-     <div class="destination-card bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all transform hover:scale-105 fade-in" data-category="belanja">
-      <div class="h-64 bg-gradient-to-br from-purple-400 to-pink-500 relative">
-       <div class="absolute inset-0 flex items-center justify-center"><i class="fas fa-road text-6xl text-white opacity-80"></i>
-       </div>
-       <div class="virtual-tour absolute top-4 right-4" onclick="openVirtualTour('Malioboro')"><i class="fas fa-vr-cardboard text-white text-xl"></i>
-       </div>
-      </div>
-      <div class="p-6">
-       <h3 class="text-xl font-bold mb-2">Jalan Malioboro</h3>
-       <p class="text-gray-600 dark:text-gray-300 mb-4">Jantung kota dengan berbagai toko dan kuliner</p>
-       <div class="flex items-center justify-between">
-        <div class="flex items-center space-x-1"><i class="fas fa-star text-yellow-400"></i> <span class="text-sm">4.7 (3,891 ulasan)</span>
-        </div><button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors"> Detail </button>
-       </div>
-      </div>
-     </div>
-    </div>
-   </div>
-  </section><!-- Gallery Section -->
-  <section id="gallery" class="py-20 bg-gray-50 dark:bg-gray-800">
-   <div class="container mx-auto px-4">
-    <div class="text-center mb-16 fade-in">
-     <h2 class="text-4xl font-bold mb-4">Galeri Foto &amp; Video</h2>
-     <p class="text-xl text-gray-600 dark:text-gray-300">Saksikan keindahan Yogyakarta melalui lensa fotografer profesional</p>
-    </div>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-     <div class="relative group cursor-pointer overflow-hidden rounded-2xl fade-in" onclick="openImageModal('Sunset di Parangtritis')">
-      <div class="h-64 bg-gradient-to-br from-orange-400 to-red-600 flex items-center justify-center"><i class="fas fa-image text-6xl text-white opacity-80"></i>
-      </div>
-      <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-50 transition-all flex items-center justify-center"><i class="fas fa-search-plus text-white text-2xl opacity-0 group-hover:opacity-100 transition-all"></i>
-      </div>
-     </div>
-     <div class="relative group cursor-pointer overflow-hidden rounded-2xl fade-in" onclick="openVideoModal()">
-      <div class="h-64 bg-gradient-to-br from-blue-400 to-purple-600 flex items-center justify-center"><i class="fas fa-play-circle text-6xl text-white opacity-80"></i>
-      </div>
-      <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-50 transition-all flex items-center justify-center"><i class="fas fa-play text-white text-2xl opacity-0 group-hover:opacity-100 transition-all"></i>
-      </div>
-     </div>
-     <div class="relative group cursor-pointer overflow-hidden rounded-2xl fade-in" onclick="openImageModal('Keraton Yogyakarta')">
-      <div class="h-64 bg-gradient-to-br from-green-400 to-teal-600 flex items-center justify-center"><i class="fas fa-camera text-6xl text-white opacity-80"></i>
-      </div>
-      <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-50 transition-all flex items-center justify-center"><i class="fas fa-search-plus text-white text-2xl opacity-0 group-hover:opacity-100 transition-all"></i>
-      </div>
-     </div>
-    </div>
-   </div>
-  </section><!-- Testimonials Carousel -->
-  <section class="py-20">
-   <div class="container mx-auto px-4">
-    <div class="text-center mb-16 fade-in">
-     <h2 class="text-4xl font-bold mb-4">Testimoni Pengunjung</h2>
-     <p class="text-xl text-gray-600 dark:text-gray-300">Apa kata mereka tentang pengalaman wisata di Yogyakarta</p>
-    </div>
-    <div class="carousel-container max-w-4xl mx-auto">
-     <div class="carousel-track" id="testimonial-track">
-      <div class="w-full flex-shrink-0 px-4">
-       <div class="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg text-center">
-        <div class="flex justify-center mb-4"><i class="fas fa-star text-yellow-400"></i> <i class="fas fa-star text-yellow-400"></i> <i class="fas fa-star text-yellow-400"></i> <i class="fas fa-star text-yellow-400"></i> <i class="fas fa-star text-yellow-400"></i>
+</head>
+<body class="light-mode">
+    <!-- ===== HEADER / NAVBAR ===== -->
+    <header id="header" class="bg-opacity-80 backdrop-blur-md fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold" style="color: var(--accent);">Pesona Jogja</a>
+            <div class="hidden lg:flex items-center space-x-8">
+                <a href="#destinasi" class="hover:text-blue-500 dark:hover:text-blue-400 transition">Destinasi</a>
+                <a href="#galeri" class="hover:text-blue-500 dark:hover:text-blue-400 transition">Galeri</a>
+                <a href="#blog" class="hover:text-blue-500 dark:hover:text-blue-400 transition">Blog</a>
+                <a href="#kontak" class="hover:text-blue-500 dark:hover:text-blue-400 transition">Kontak</a>
+            </div>
+            <div class="flex items-center space-x-4">
+                <!-- Language Switcher -->
+                <div class="relative">
+                    <button id="lang-switcher" class="flex items-center space-x-1">
+                        <i data-lucide="globe" class="w-5 h-5"></i>
+                        <span id="current-lang">ID</span>
+                    </button>
+                    <div id="lang-menu" class="hidden absolute right-0 mt-2 py-2 w-20 bg-[var(--bg-secondary)] rounded-md shadow-xl z-20">
+                        <a href="#" class="block px-4 py-2 text-sm" data-lang="ID">Indonesia</a>
+                        <a href="#" class="block px-4 py-2 text-sm" data-lang="EN">English</a>
+                    </div>
+                </div>
+                <!-- Dark/Light Mode Toggle -->
+                <button id="theme-toggle" class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-600">
+                    <i id="theme-icon" data-lucide="sun" class="w-5 h-5"></i>
+                </button>
+                <button id="mobile-menu-button" class="lg:hidden p-2">
+                    <i data-lucide="menu" class="w-6 h-6"></i>
+                </button>
+            </div>
+        </nav>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden lg:hidden px-6 pb-4">
+            <a href="#destinasi" class="block py-2">Destinasi</a>
+            <a href="#galeri" class="block py-2">Galeri</a>
+            <a href="#blog" class="block py-2">Blog</a>
+            <a href="#kontak" class="block py-2">Kontak</a>
         </div>
-        <p class="text-lg mb-6 italic">"Pengalaman yang luar biasa! Yogyakarta benar-benar kota yang kaya akan budaya dan sejarah. Pelayanan tour guide sangat memuaskan."</p>
-        <div class="flex items-center justify-center space-x-4">
-         <div class="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center"><i class="fas fa-user text-white"></i>
-         </div>
-         <div>
-          <h4 class="font-semibold">Sarah Johnson</h4>
-          <p class="text-gray-600 dark:text-gray-300 text-sm">Turis dari Australia</p>
-         </div>
-        </div>
-       </div>
-      </div>
-      <div class="w-full flex-shrink-0 px-4">
-       <div class="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg text-center">
-        <div class="flex justify-center mb-4"><i class="fas fa-star text-yellow-400"></i> <i class="fas fa-star text-yellow-400"></i> <i class="fas fa-star text-yellow-400"></i> <i class="fas fa-star text-yellow-400"></i> <i class="fas fa-star text-yellow-400"></i>
-        </div>
-        <p class="text-lg mb-6 italic">"Kuliner Jogja memang tiada duanya! Gudeg, bakpia, dan wedang ronde yang autentik. Pasti akan kembali lagi!"</p>
-        <div class="flex items-center justify-center space-x-4">
-         <div class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center"><i class="fas fa-user text-white"></i>
-         </div>
-         <div>
-          <h4 class="font-semibold">Budi Santoso</h4>
-          <p class="text-gray-600 dark:text-gray-300 text-sm">Wisatawan Jakarta</p>
-         </div>
-        </div>
-       </div>
-      </div>
-     </div>
-     <div class="flex justify-center mt-8 space-x-2"><button class="carousel-dot w-3 h-3 rounded-full bg-blue-600" data-slide="0"></button> <button class="carousel-dot w-3 h-3 rounded-full bg-gray-300" data-slide="1"></button>
-     </div>
-    </div>
-   </div>
-  </section><!-- Events Section -->
-  <section id="events" class="py-20 bg-gray-50 dark:bg-gray-800">
-   <div class="container mx-auto px-4">
-    <div class="text-center mb-16 fade-in">
-     <h2 class="text-4xl font-bold mb-4">Event &amp; Kegiatan</h2>
-     <p class="text-xl text-gray-600 dark:text-gray-300">Jangan lewatkan event menarik yang akan datang</p>
-    </div>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-     <div class="bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg fade-in">
-      <div class="h-48 bg-gradient-to-br from-red-400 to-orange-500 flex items-center justify-center"><i class="fas fa-calendar-alt text-6xl text-white opacity-80"></i>
-      </div>
-      <div class="p-6">
-       <div class="flex items-center space-x-2 text-sm text-gray-600 dark:text-gray-300 mb-2"><i class="fas fa-calendar"></i> <span>15-17 Desember 2024</span>
-       </div>
-       <h3 class="text-xl font-bold mb-2">Festival Budaya Yogyakarta</h3>
-       <p class="text-gray-600 dark:text-gray-300 mb-4">Perayaan budaya tradisional dengan pertunjukan seni dan pameran kerajinan</p><button class="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition-colors"> Daftar Sekarang </button>
-      </div>
-     </div>
-     <div class="bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg fade-in">
-      <div class="h-48 bg-gradient-to-br from-green-400 to-blue-500 flex items-center justify-center"><i class="fas fa-utensils text-6xl text-white opacity-80"></i>
-      </div>
-      <div class="p-6">
-       <div class="flex items-center space-x-2 text-sm text-gray-600 dark:text-gray-300 mb-2"><i class="fas fa-calendar"></i> <span>20-22 Desember 2024</span>
-       </div>
-       <h3 class="text-xl font-bold mb-2">Festival Kuliner Jogja</h3>
-       <p class="text-gray-600 dark:text-gray-300 mb-4">Nikmati berbagai kuliner khas Yogyakarta dari berbagai daerah</p><button class="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition-colors"> Daftar Sekarang </button>
-      </div>
-     </div>
-     <div class="bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg fade-in">
-      <div class="h-48 bg-gradient-to-br from-purple-400 to-pink-500 flex items-center justify-center"><i class="fas fa-music text-6xl text-white opacity-80"></i>
-      </div>
-      <div class="p-6">
-       <div class="flex items-center space-x-2 text-sm text-gray-600 dark:text-gray-300 mb-2"><i class="fas fa-calendar"></i> <span>31 Desember 2024</span>
-       </div>
-       <h3 class="text-xl font-bold mb-2">Konser Tahun Baru</h3>
-       <p class="text-gray-600 dark:text-gray-300 mb-4">Rayakan pergantian tahun dengan konser musik spektakuler</p><button class="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition-colors"> Daftar Sekarang </button>
-      </div>
-     </div>
-    </div>
-   </div>
-  </section><!-- Blog Section -->
-  <section id="blog" class="py-20">
-   <div class="container mx-auto px-4">
-    <div class="text-center mb-16 fade-in">
-     <h2 class="text-4xl font-bold mb-4">Artikel &amp; Tips Wisata</h2>
-     <p class="text-xl text-gray-600 dark:text-gray-300">Baca tips dan panduan lengkap untuk liburan terbaik di Yogyakarta</p>
-    </div>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-     <article class="bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all fade-in">
-      <div class="h-48 bg-gradient-to-br from-blue-400 to-purple-500 flex items-center justify-center"><i class="fas fa-map-marked-alt text-6xl text-white opacity-80"></i>
-      </div>
-      <div class="p-6">
-       <div class="flex items-center space-x-2 text-sm text-gray-600 dark:text-gray-300 mb-2"><i class="fas fa-clock"></i> <span>5 menit baca</span>
-       </div>
-       <h3 class="text-xl font-bold mb-2">Panduan Lengkap Wisata 3 Hari di Yogyakarta</h3>
-       <p class="text-gray-600 dark:text-gray-300 mb-4">Itinerary lengkap untuk menjelajahi Yogyakarta dalam 3 hari dengan budget terjangkau</p><button class="text-blue-600 hover:text-blue-700 font-semibold"> Baca Selengkapnya → </button>
-      </div>
-     </article>
-     <article class="bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all fade-in">
-      <div class="h-48 bg-gradient-to-br from-green-400 to-teal-500 flex items-center justify-center"><i class="fas fa-utensils text-6xl text-white opacity-80"></i>
-      </div>
-      <div class="p-6">
-       <div class="flex items-center space-x-2 text-sm text-gray-600 dark:text-gray-300 mb-2"><i class="fas fa-clock"></i> <span>7 menit baca</span>
-       </div>
-       <h3 class="text-xl font-bold mb-2">10 Kuliner Wajib Coba di Yogyakarta</h3>
-       <p class="text-gray-600 dark:text-gray-300 mb-4">Dari gudeg hingga bakpia, temukan kuliner autentik yang tidak boleh dilewatkan</p><button class="text-blue-600 hover:text-blue-700 font-semibold"> Baca Selengkapnya → </button>
-      </div>
-     </article>
-     <article class="bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all fade-in">
-      <div class="h-48 bg-gradient-to-br from-orange-400 to-red-500 flex items-center justify-center"><i class="fas fa-camera text-6xl text-white opacity-80"></i>
-      </div>
-      <div class="p-6">
-       <div class="flex items-center space-x-2 text-sm text-gray-600 dark:text-gray-300 mb-2"><i class="fas fa-clock"></i> <span>4 menit baca</span>
-       </div>
-       <h3 class="text-xl font-bold mb-2">Spot Foto Instagramable di Yogyakarta</h3>
-       <p class="text-gray-600 dark:text-gray-300 mb-4">Kumpulan tempat-tempat cantik untuk mengabadikan momen liburan Anda</p><button class="text-blue-600 hover:text-blue-700 font-semibold"> Baca Selengkapnya → </button>
-      </div>
-     </article>
-    </div>
-   </div>
-  </section><!-- Booking Section -->
-  <section class="py-20 bg-blue-600 text-white">
-   <div class="container mx-auto px-4">
-    <div class="text-center mb-16 fade-in">
-     <h2 class="text-4xl font-bold mb-4">Reservasi &amp; Pemesanan</h2>
-     <p class="text-xl opacity-90">Pesan paket wisata atau tiket masuk destinasi favorit Anda</p>
-    </div>
-    <div class="max-w-4xl mx-auto">
-     <div class="bg-white text-gray-800 rounded-2xl p-8 shadow-2xl">
-      <form id="booking-form" class="grid grid-cols-1 md:grid-cols-2 gap-6">
-       <div><label for="booking-name" class="block text-sm font-semibold mb-2">Nama Lengkap</label> <input type="text" id="booking-name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
-       </div>
-       <div><label for="booking-email" class="block text-sm font-semibold mb-2">Email</label> <input type="email" id="booking-email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
-       </div>
-       <div><label for="booking-phone" class="block text-sm font-semibold mb-2">Nomor Telepon</label> <input type="tel" id="booking-phone" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
-       </div>
-       <div><label for="booking-destination" class="block text-sm font-semibold mb-2">Destinasi</label> <select id="booking-destination" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required> <option value="">Pilih Destinasi</option> <option value="keraton">Keraton Yogyakarta</option> <option value="borobudur">Candi Borobudur</option> <option value="malioboro">Jalan Malioboro</option> <option value="prambanan">Candi Prambanan</option> <option value="taman-sari">Taman Sari</option> </select>
-       </div>
-       <div><label for="booking-date" class="block text-sm font-semibold mb-2">Tanggal Kunjungan</label> <input type="date" id="booking-date" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
-       </div>
-       <div><label for="booking-guests" class="block text-sm font-semibold mb-2">Jumlah Pengunjung</label> <input type="number" id="booking-guests" min="1" max="50" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
-       </div>
-       <div class="md:col-span-2"><label for="booking-notes" class="block text-sm font-semibold mb-2">Catatan Khusus</label> <textarea id="booking-notes" rows="4" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Permintaan khusus atau informasi tambahan..."></textarea>
-       </div>
-       <div class="md:col-span-2 text-center"><button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-lg text-lg font-semibold transition-colors"> <span id="booking-btn-text">Kirim Reservasi</span> <i id="booking-loading" class="fas fa-spinner fa-spin ml-2 hidden"></i> </button>
-       </div>
-      </form>
-     </div>
-    </div>
-   </div>
-  </section><!-- Map Integration -->
-  <section class="py-20 bg-gray-50 dark:bg-gray-800">
-   <div class="container mx-auto px-4">
-    <div class="text-center mb-16 fade-in">
-     <h2 class="text-4xl font-bold mb-4">Lokasi &amp; Peta</h2>
-     <p class="text-xl text-gray-600 dark:text-gray-300">Temukan lokasi destinasi wisata di Yogyakarta</p>
-    </div>
-    <div class="map-container">
-     <div class="text-center"><i class="fas fa-map-marker-alt text-6xl text-gray-400 mb-4"></i>
-      <h3 class="text-xl font-semibold mb-2">Peta Interaktif Yogyakarta</h3>
-      <p class="text-gray-600 mb-4">Klik untuk melihat lokasi destinasi wisata</p><button class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors"> Buka Peta Lengkap </button>
-     </div>
-    </div>
-   </div>
-  </section><!-- Contact Section -->
-  <section id="contact" class="py-20">
-   <div class="container mx-auto px-4">
-    <div class="text-center mb-16 fade-in">
-     <h2 id="contact-title" class="text-4xl font-bold mb-4">Hubungi Kami</h2>
-     <p class="text-xl text-gray-600 dark:text-gray-300">Ada pertanyaan? Kami siap membantu merencanakan liburan Anda</p>
-    </div>
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12"><!-- Contact Info -->
-     <div class="fade-in">
-      <div class="space-y-8">
-       <div class="flex items-start space-x-4">
-        <div class="bg-blue-600 text-white p-3 rounded-lg"><i class="fas fa-map-marker-alt"></i>
-        </div>
-        <div>
-         <h3 class="font-semibold text-lg mb-2">Alamat</h3>
-         <p class="text-gray-600 dark:text-gray-300">Jl. Malioboro No. 123, Yogyakarta 55271, Indonesia</p>
-        </div>
-       </div>
-       <div class="flex items-start space-x-4">
-        <div class="bg-green-600 text-white p-3 rounded-lg"><i class="fas fa-phone"></i>
-        </div>
-        <div>
-         <h3 class="font-semibold text-lg mb-2">Telepon</h3>
-         <p class="text-gray-600 dark:text-gray-300">+62 274 123 4567</p>
-        </div>
-       </div>
-       <div class="flex items-start space-x-4">
-        <div class="bg-purple-600 text-white p-3 rounded-lg"><i class="fas fa-envelope"></i>
-        </div>
-        <div>
-         <h3 class="font-semibold text-lg mb-2">Email</h3>
-         <p class="text-gray-600 dark:text-gray-300">info@wisatayogyakarta.com</p>
-        </div>
-       </div>
-       <div class="flex items-start space-x-4">
-        <div class="bg-orange-600 text-white p-3 rounded-lg"><i class="fas fa-clock"></i>
-        </div>
-        <div>
-         <h3 class="font-semibold text-lg mb-2">Jam Operasional</h3>
-         <p class="text-gray-600 dark:text-gray-300">Senin - Minggu: 08:00 - 20:00 WIB</p>
-        </div>
-       </div>
-      </div><!-- Social Media -->
-      <div class="mt-8">
-       <h3 class="font-semibold text-lg mb-4">Ikuti Kami</h3>
-       <div class="flex space-x-4"><button class="bg-blue-600 text-white p-3 rounded-lg hover:bg-blue-700 transition-colors" onclick="shareToSocial('facebook')"> <i class="fab fa-facebook-f"></i> </button> <button class="bg-pink-600 text-white p-3 rounded-lg hover:bg-pink-700 transition-colors" onclick="shareToSocial('instagram')"> <i class="fab fa-instagram"></i> </button> <button class="bg-blue-400 text-white p-3 rounded-lg hover:bg-blue-500 transition-colors" onclick="shareToSocial('twitter')"> <i class="fab fa-twitter"></i> </button> <button class="bg-red-600 text-white p-3 rounded-lg hover:bg-red-700 transition-colors" onclick="shareToSocial('youtube')"> <i class="fab fa-youtube"></i> </button>
-       </div>
-      </div>
-     </div><!-- Contact Form -->
-     <div class="fade-in">
-      <form id="contact-form" class="space-y-6">
-       <div><label for="contact-name" class="block text-sm font-semibold mb-2">Nama Lengkap</label> <input type="text" id="contact-name" class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700" required>
-       </div>
-       <div><label for="contact-email" class="block text-sm font-semibold mb-2">Email</label> <input type="email" id="contact-email" class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700" required>
-       </div>
-       <div><label for="contact-subject" class="block text-sm font-semibold mb-2">Subjek</label> <input type="text" id="contact-subject" class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700" required>
-       </div>
-       <div><label for="contact-message" class="block text-sm font-semibold mb-2">Pesan</label> <textarea id="contact-message" rows="6" class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700" required></textarea>
-       </div><button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg font-semibold transition-colors"> <span id="contact-btn-text">Kirim Pesan</span> <i id="contact-loading" class="fas fa-spinner fa-spin ml-2 hidden"></i> </button>
-      </form>
-     </div>
-    </div>
-   </div>
-  </section><!-- Feedback Section -->
-  <section class="py-20 bg-gray-50 dark:bg-gray-800">
-   <div class="container mx-auto px-4">
-    <div class="text-center mb-16 fade-in">
-     <h2 class="text-4xl font-bold mb-4">Saran &amp; Penilaian</h2>
-     <p class="text-xl text-gray-600 dark:text-gray-300">Bantu kami meningkatkan layanan dengan memberikan feedback</p>
-    </div>
-    <div class="max-w-2xl mx-auto">
-     <form id="feedback-form" class="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg">
-      <div class="mb-6"><label class="block text-sm font-semibold mb-2">Rating Pengalaman</label>
-       <div class="flex justify-center space-x-2 mb-4"><button type="button" class="rating-star text-3xl text-gray-300 hover:text-yellow-400 transition-colors" data-rating="1"> <i class="fas fa-star"></i> </button> <button type="button" class="rating-star text-3xl text-gray-300 hover:text-yellow-400 transition-colors" data-rating="2"> <i class="fas fa-star"></i> </button> <button type="button" class="rating-star text-3xl text-gray-300 hover:text-yellow-400 transition-colors" data-rating="3"> <i class="fas fa-star"></i> </button> <button type="button" class="rating-star text-3xl text-gray-300 hover:text-yellow-400 transition-colors" data-rating="4"> <i class="fas fa-star"></i> </button> <button type="button" class="rating-star text-3xl text-gray-300 hover:text-yellow-400 transition-colors" data-rating="5"> <i class="fas fa-star"></i> </button>
-       </div><input type="hidden" id="feedback-rating" value="0">
-      </div>
-      <div class="mb-6"><label for="feedback-name" class="block text-sm font-semibold mb-2">Nama (Opsional)</label> <input type="text" id="feedback-name" class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700">
-      </div>
-      <div class="mb-6"><label for="feedback-message" class="block text-sm font-semibold mb-2">Saran &amp; Masukan</label> <textarea id="feedback-message" rows="4" class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700" placeholder="Bagikan pengalaman dan saran Anda..." required></textarea>
-      </div><button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg font-semibold transition-colors"> <span id="feedback-btn-text">Kirim Feedback</span> <i id="feedback-loading" class="fas fa-spinner fa-spin ml-2 hidden"></i> </button>
-     </form>
-    </div>
-   </div>
-  </section><!-- Footer -->
-  <footer class="bg-gray-900 text-white py-16">
-   <div class="container mx-auto px-4">
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-     <div>
-      <div class="flex items-center space-x-2 mb-6"><i class="fas fa-mountain text-2xl text-blue-400"></i> <span class="text-xl font-bold">Wisata Yogyakarta</span>
-      </div>
-      <p class="text-gray-300 mb-4">Platform terpercaya untuk menjelajahi keindahan dan kekayaan budaya Yogyakarta.</p>
-      <div class="flex space-x-4"><button class="text-gray-300 hover:text-white transition-colors" onclick="shareToSocial('facebook')"> <i class="fab fa-facebook-f text-xl"></i> </button> <button class="text-gray-300 hover:text-white transition-colors" onclick="shareToSocial('instagram')"> <i class="fab fa-instagram text-xl"></i> </button> <button class="text-gray-300 hover:text-white transition-colors" onclick="shareToSocial('twitter')"> <i class="fab fa-twitter text-xl"></i> </button> <button class="text-gray-300 hover:text-white transition-colors" onclick="shareToSocial('youtube')"> <i class="fab fa-youtube text-xl"></i> </button>
-      </div>
-     </div>
-     <div>
-      <h3 class="text-lg font-semibold mb-4">Destinasi Populer</h3>
-      <ul class="space-y-2 text-gray-300">
-       <li><a href="#" class="hover:text-white transition-colors">Keraton Yogyakarta</a></li>
-       <li><a href="#" class="hover:text-white transition-colors">Candi Borobudur</a></li>
-       <li><a href="#" class="hover:text-white transition-colors">Jalan Malioboro</a></li>
-       <li><a href="#" class="hover:text-white transition-colors">Candi Prambanan</a></li>
-       <li><a href="#" class="hover:text-white transition-colors">Taman Sari</a></li>
-      </ul>
-     </div>
-     <div>
-      <h3 class="text-lg font-semibold mb-4">Layanan</h3>
-      <ul class="space-y-2 text-gray-300">
-       <li><a href="#" class="hover:text-white transition-colors">Paket Wisata</a></li>
-       <li><a href="#" class="hover:text-white transition-colors">Pemandu Wisata</a></li>
-       <li><a href="#" class="hover:text-white transition-colors">Transportasi</a></li>
-       <li><a href="#" class="hover:text-white transition-colors">Akomodasi</a></li>
-       <li><a href="#" class="hover:text-white transition-colors">Event Organizer</a></li>
-      </ul>
-     </div>
-     <div>
-      <h3 class="text-lg font-semibold mb-4">Kontak</h3>
-      <div class="space-y-2 text-gray-300">
-       <p><i class="fas fa-map-marker-alt mr-2"></i>Jl. Malioboro No. 123, Yogyakarta</p>
-       <p><i class="fas fa-phone mr-2"></i>+62 274 123 4567</p>
-       <p><i class="fas fa-envelope mr-2"></i>info@wisatayogyakarta.com</p>
-      </div>
-     </div>
-    </div>
-    <div class="border-t border-gray-700 mt-12 pt-8 text-center text-gray-300">
-     <p>© 2024 Wisata Yogyakarta. Semua hak dilindungi undang-undang.</p>
-    </div>
-   </div>
-  </footer><!-- Chatbot -->
-  <div class="chatbot"><button id="chatbot-toggle" class="bg-blue-600 hover:bg-blue-700 text-white p-4 rounded-full shadow-lg transition-all transform hover:scale-110"> <i class="fas fa-comments text-xl"></i> </button>
-   <div id="chatbot-window" class="hidden fixed bottom-20 right-4 w-80 h-96 bg-white dark:bg-gray-800 rounded-2xl shadow-2xl border border-gray-200 dark:border-gray-700">
-    <div class="bg-blue-600 text-white p-4 rounded-t-2xl">
-     <div class="flex items-center justify-between">
-      <div class="flex items-center space-x-2"><i class="fas fa-robot"></i> <span class="font-semibold">Asisten Wisata</span>
-      </div><button id="chatbot-close" class="hover:bg-blue-700 p-1 rounded"> <i class="fas fa-times"></i> </button>
-     </div>
-    </div>
-    <div id="chatbot-messages" class="h-64 p-4 overflow-y-auto">
-     <div class="bg-gray-100 dark:bg-gray-700 p-3 rounded-lg mb-2">
-      <p class="text-sm">Halo! Saya asisten virtual Wisata Yogyakarta. Ada yang bisa saya bantu?</p>
-     </div>
-    </div>
-    <div class="p-4 border-t border-gray-200 dark:border-gray-700">
-     <div class="flex space-x-2"><input type="text" id="chatbot-input" placeholder="Ketik pesan..." class="flex-1 px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700"> <button id="chatbot-send" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg"> <i class="fas fa-paper-plane"></i> </button>
-     </div>
-    </div>
-   </div>
-  </div><!-- Video Modal -->
-  <div id="video-overlay" class="video-overlay">
-   <div class="relative"><button id="close-video" class="absolute -top-12 right-0 text-white text-2xl hover:text-gray-300"> <i class="fas fa-times"></i> </button>
-    <div class="w-96 h-64 bg-black rounded-lg flex items-center justify-center">
-     <div class="text-center text-white"><i class="fas fa-play-circle text-6xl mb-4"></i>
-      <p>Video Demo Wisata Yogyakarta</p>
-     </div>
-    </div>
-   </div>
-  </div><!-- Sidebar -->
-  <div id="sidebar" class="fixed left-0 top-0 h-full w-64 bg-white dark:bg-gray-800 shadow-lg transform -translate-x-full transition-transform duration-300 z-40">
-   <div class="p-6">
-    <div class="flex items-center justify-between mb-8">
-     <h3 class="text-xl font-bold">Menu</h3><button id="sidebar-close" class="p-2 hover:bg-gray-200 dark:hover:bg-gray-700 rounded"> <i class="fas fa-times"></i> </button>
-    </div>
-    <nav class="space-y-4"><a href="#home" class="block py-2 px-4 rounded hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">Beranda</a> <a href="#destinations" class="block py-2 px-4 rounded hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">Destinasi</a> <a href="#gallery" class="block py-2 px-4 rounded hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">Galeri</a> <a href="#events" class="block py-2 px-4 rounded hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">Event</a> <a href="#blog" class="block py-2 px-4 rounded hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">Blog</a> <a href="#contact" class="block py-2 px-4 rounded hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">Kontak</a>
-    </nav>
-   </div>
-  </div><!-- Sidebar Overlay -->
-  <div id="sidebar-overlay" class="fixed inset-0 bg-black bg-opacity-50 z-30 hidden"></div>
-  <script>
-        // Configuration object
-        const defaultConfig = {
-            site_title: "Wisata Yogyakarta",
-            hero_title: "Jelajahi Keindahan Yogyakarta",
-            hero_subtitle: "Temukan destinasi wisata terbaik di Kota Gudeg yang kaya akan budaya, sejarah, dan kuliner lezat",
-            contact_title: "Hubungi Kami",
-            primary_color: "#2563eb",
-            secondary_color: "#10b981",
-            accent_color: "#f59e0b",
-            background_color: "#f8fafc",
-            text_color: "#1f2937",
-            font_family: "Inter",
-            font_size: 16
-        };
+    </header>
 
-        // Data handler for SDK
-        const dataHandler = {
-            onDataChanged(data) {
-                // Update UI with new data if needed
-                console.log('Data updated:', data.length, 'records');
-            }
-        };
+    <!-- ===== HERO SECTION ===== -->
+    <section id="hero" class="relative h-screen flex items-center justify-center text-white overflow-hidden">
+        <!-- Video Background -->
+        <video autoplay muted loop class="video-bg">
+            <source src="https://assets.mixkit.co/videos/preview/mixkit-beautiful-aerial-shot-of-a-beach-at-sunset-2225-large.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="z-10 text-center px-4">
+            <h1 class="text-4xl md:text-6xl font-extrabold mb-4 drop-shadow-lg">Jelajahi Keindahan Yogyakarta</h1>
+            <p class="text-lg md:text-xl mb-8 max-w-2xl mx-auto drop-shadow-md">Temukan surga tersembunyi, budaya yang kaya, dan petualangan tak terlupakan.</p>
+            <!-- Search Bar -->
+            <div class="max-w-xl mx-auto">
+                <div class="relative">
+                    <input type="text" placeholder="Cari destinasi, misal: Candi Prambanan" class="w-full py-3 px-5 pr-12 rounded-full bg-white bg-opacity-30 backdrop-blur-sm border-2 border-white/50 text-white placeholder-gray-200 focus:outline-none focus:ring-2 focus:ring-white">
+                    <button class="absolute right-3 top-1/2 -translate-y-1/2 p-2 rounded-full bg-white text-blue-500 hover:bg-gray-200 transition">
+                        <i data-lucide="search" class="w-5 h-5"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
 
-        // Language translations
-        const translations = {
-            id: {
-                home: "Beranda",
-                destinations: "Destinasi",
-                gallery: "Galeri",
-                events: "Event",
-                blog: "Blog",
-                contact: "Kontak",
-                explore_now: "Jelajahi Sekarang",
-                virtual_tour: "Virtual Tour 360°",
-                popular_destinations: "Destinasi Populer",
-                all: "Semua",
-                culture: "Budaya",
-                nature: "Alam",
-                culinary: "Kuliner",
-                shopping: "Belanja"
-            },
-            en: {
-                home: "Home",
-                destinations: "Destinations",
-                gallery: "Gallery",
-                events: "Events",
-                blog: "Blog",
-                contact: "Contact",
-                explore_now: "Explore Now",
-                virtual_tour: "Virtual Tour 360°",
-                popular_destinations: "Popular Destinations",
-                all: "All",
-                culture: "Culture",
-                nature: "Nature",
-                culinary: "Culinary",
-                shopping: "Shopping"
-            }
-        };
-
-        let currentLanguage = 'id';
-        let currentTestimonial = 0;
-        let selectedRating = 0;
-        let isDarkMode = false;
-
-        // Initialize application
-        async function initApp() {
-            // Initialize Data SDK
-            if (window.dataSdk) {
-                const initResult = await window.dataSdk.init(dataHandler);
-                if (!initResult.isOk) {
-                    console.error('Failed to initialize Data SDK');
-                }
-            }
-
-            // Initialize Element SDK
-            if (window.elementSdk) {
-                await window.elementSdk.init({
-                    defaultConfig,
-                    render,
-                    mapToCapabilities,
-                    mapToEditPanelValues
-                });
-            }
-
-            setupEventListeners();
-            setupScrollAnimations();
-            setupCounters();
-            setupCarousel();
-            checkDarkMode();
-        }
-
-        // Render function for Element SDK
-        async function render(config) {
-            const siteTitle = config.site_title || defaultConfig.site_title;
-            const heroTitle = config.hero_title || defaultConfig.hero_title;
-            const heroSubtitle = config.hero_subtitle || defaultConfig.hero_subtitle;
-            const contactTitle = config.contact_title || defaultConfig.contact_title;
-            const primaryColor = config.primary_color || defaultConfig.primary_color;
-            const fontFamily = config.font_family || defaultConfig.font_family;
-            const fontSize = config.font_size || defaultConfig.font_size;
-
-            // Update text content
-            document.getElementById('site-title').textContent = siteTitle;
-            document.getElementById('hero-title').textContent = heroTitle;
-            document.getElementById('hero-subtitle').textContent = heroSubtitle;
-            document.getElementById('contact-title').textContent = contactTitle;
-
-            // Update colors
-            document.documentElement.style.setProperty('--primary-color', primaryColor);
+    <main class="container mx-auto px-6 py-16">
+        <!-- ===== DESTINASI UTAMA ===== -->
+        <section id="destinasi" class="mb-20 scroll-animation">
+            <h2 class="text-3xl font-bold text-center mb-2">Destinasi Populer</h2>
+            <p class="text-center text-gray-600 dark:text-gray-300 mb-8 max-w-2xl mx-auto">Tempat-tempat ikonik di Yogyakarta yang wajib Anda kunjungi untuk pengalaman yang tak terlupakan.</p>
             
-            // Update font
-            const baseFontStack = 'system-ui, -apple-system, sans-serif';
-            document.body.style.fontFamily = `${fontFamily}, ${baseFontStack}`;
+            <!-- Filter Destinasi -->
+            <div class="flex justify-center space-x-2 md:space-x-4 mb-8">
+                <button class="filter-btn active bg-blue-500 text-white px-4 py-2 rounded-full text-sm" data-filter="all">Semua</button>
+                <button class="filter-btn bg-[var(--bg-secondary)] px-4 py-2 rounded-full text-sm" data-filter="budaya">Budaya</button>
+                <button class="filter-btn bg-[var(--bg-secondary)] px-4 py-2 rounded-full text-sm" data-filter="alam">Alam</button>
+                <button class="filter-btn bg-[var(--bg-secondary)] px-4 py-2 rounded-full text-sm" data-filter="kuliner">Kuliner</button>
+            </div>
             
-            // Update font sizes
-            document.documentElement.style.fontSize = `${fontSize}px`;
-            document.getElementById('hero-title').style.fontSize = `${fontSize * 3}px`;
-            document.getElementById('hero-subtitle').style.fontSize = `${fontSize * 1.25}px`;
-        }
+            <div id="destinasi-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Destination Card -->
+                <div class="destination-card bg-[var(--bg-secondary)] rounded-xl overflow-hidden shadow-lg transition-transform hover:scale-105" data-category="budaya">
+                    <img src="https://placehold.co/600x400/003366/FFFFFF?text=Candi+Prambanan" alt="Candi Prambanan" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Candi Prambanan</h3>
+                        <p class="text-sm text-gray-600 dark:text-gray-300 mb-4">Kompleks candi Hindu terbesar di Indonesia yang didedikasikan untuk Trimurti.</p>
+                        <div class="flex justify-between items-center">
+                            <a href="#" class="text-blue-500 dark:text-blue-400 font-semibold text-sm">Lihat Detail</a>
+                            <div class="flex space-x-2">
+                                <button class="social-share-btn p-1 text-gray-500 hover:text-blue-500"><i data-lucide="share-2" class="w-4 h-4"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                 <!-- Destination Card -->
+                <div class="destination-card bg-[var(--bg-secondary)] rounded-xl overflow-hidden shadow-lg transition-transform hover:scale-105" data-category="alam">
+                    <img src="https://placehold.co/600x400/3498DB/FFFFFF?text=Pantai+Indrayanti" alt="Pantai Indrayanti" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Pantai Indrayanti</h3>
+                        <p class="text-sm text-gray-600 dark:text-gray-300 mb-4">Pantai pasir putih yang indah dengan fasilitas lengkap dan pemandangan matahari terbenam.</p>
+                         <div class="flex justify-between items-center">
+                            <a href="#" class="text-blue-500 dark:text-blue-400 font-semibold text-sm">Lihat Detail</a>
+                            <div class="flex space-x-2">
+                                <button class="social-share-btn p-1 text-gray-500 hover:text-blue-500"><i data-lucide="share-2" class="w-4 h-4"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                 <!-- Destination Card -->
+                <div class="destination-card bg-[var(--bg-secondary)] rounded-xl overflow-hidden shadow-lg transition-transform hover:scale-105" data-category="kuliner">
+                    <img src="https://placehold.co/600x400/E74C3C/FFFFFF?text=Gudeg+Yu+Djum" alt="Gudeg Yu Djum" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Gudeg Yu Djum</h3>
+                        <p class="text-sm text-gray-600 dark:text-gray-300 mb-4">Nikmati cita rasa otentik gudeg, makanan khas Yogyakarta, di salah satu tempat legendaris.</p>
+                         <div class="flex justify-between items-center">
+                            <a href="#" class="text-blue-500 dark:text-blue-400 font-semibold text-sm">Lihat Detail</a>
+                            <div class="flex space-x-2">
+                                <button class="social-share-btn p-1 text-gray-500 hover:text-blue-500"><i data-lucide="share-2" class="w-4 h-4"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- ===== COUNTER / STATISTIK ===== -->
+        <section class="mb-20 py-16 bg-[var(--bg-secondary)] rounded-xl scroll-animation parallax" style="background-image: url('https://placehold.co/1200x400/111827/FFFFFF?text=Parallax+Background');">
+             <div class="bg-black bg-opacity-50 rounded-xl py-12">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center text-white">
+                    <div>
+                        <h3 class="text-4xl font-bold counter" data-target="100">0</h3>
+                        <p class="text-gray-300">Destinasi Pilihan</p>
+                    </div>
+                    <div>
+                        <h3 class="text-4xl font-bold counter" data-target="5000">0</h3>
+                        <p class="text-gray-300">Ulasan Pengunjung</p>
+                    </div>
+                    <div>
+                        <h3 class="text-4xl font-bold counter" data-target="25">0</h3>
+                        <p class="text-gray-300">Acara Tahunan</p>
+                    </div>
+                     <div>
+                        <h3 class="text-4xl font-bold counter" data-target="150">0</h3>
+                        <p class="text-gray-300">Pemandu Lokal</p>
+                    </div>
+                </div>
+             </div>
+        </section>
 
-        // Capabilities mapping
-        function mapToCapabilities(config) {
-            return {
-                recolorables: [
-                    {
-                        get: () => config.primary_color || defaultConfig.primary_color,
-                        set: (value) => {
-                            if (window.elementSdk) {
-                                window.elementSdk.setConfig({ primary_color: value });
-                            }
-                        }
-                    }
-                ],
-                borderables: [],
-                fontEditable: {
-                    get: () => config.font_family || defaultConfig.font_family,
-                    set: (value) => {
-                        if (window.elementSdk) {
-                            window.elementSdk.setConfig({ font_family: value });
-                        }
-                    }
-                },
-                fontSizeable: {
-                    get: () => config.font_size || defaultConfig.font_size,
-                    set: (value) => {
-                        if (window.elementSdk) {
-                            window.elementSdk.setConfig({ font_size: value });
-                        }
-                    }
+        <!-- ===== GALERI & VIRTUAL TOUR ===== -->
+        <section id="galeri" class="mb-20 scroll-animation">
+            <h2 class="text-3xl font-bold text-center mb-8">Galeri Pesona Jogja</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="grid gap-4">
+                    <div><img class="h-auto max-w-full rounded-lg" src="https://placehold.co/500x700/6366F1/FFFFFF" alt=""></div>
+                    <div><img class="h-auto max-w-full rounded-lg" src="https://placehold.co/500x500/8B5CF6/FFFFFF" alt=""></div>
+                </div>
+                <div class="grid gap-4">
+                    <div><img class="h-auto max-w-full rounded-lg" src="https://placehold.co/500x500/EC4899/FFFFFF" alt=""></div>
+                    <div><img class="h-auto max-w-full rounded-lg" src="https://placehold.co/500x700/F43F5E/FFFFFF" alt=""></div>
+                </div>
+                 <div class="grid gap-4">
+                    <div><img class="h-auto max-w-full rounded-lg" src="https://placehold.co/500x700/F59E0B/FFFFFF" alt=""></div>
+                    <div><img class="h-auto max-w-full rounded-lg" src="https://placehold.co/500x500/10B981/FFFFFF" alt=""></div>
+                </div>
+                <div class="grid gap-4">
+                    <div><img class="h-auto max-w-full rounded-lg" src="https://placehold.co/500x500/3B82F6/FFFFFF" alt=""></div>
+                    <div><img class="h-auto max-w-full rounded-lg" src="https://placehold.co/500x700/14B8A6/FFFFFF" alt=""></div>
+                </div>
+            </div>
+            <div class="text-center mt-8">
+                <button id="virtual-tour-btn" class="bg-blue-500 text-white px-8 py-3 rounded-full font-semibold hover:bg-blue-600 transition inline-flex items-center space-x-2">
+                    <i data-lucide="view" class="w-5 h-5"></i>
+                    <span>Mulai Virtual Tour 360°</span>
+                </button>
+            </div>
+        </section>
+        
+        <!-- ===== ULASAN PENGUNJUNG (CAROUSEL) ===== -->
+        <section id="testimoni" class="mb-20 scroll-animation">
+            <h2 class="text-3xl font-bold text-center mb-8">Kata Mereka Tentang Jogja</h2>
+            <div class="relative w-full max-w-3xl mx-auto overflow-hidden">
+                <div id="testimonial-carousel" class="flex transition-transform duration-500 ease-in-out">
+                    <!-- Testimonial Items -->
+                    <div class="w-full flex-shrink-0 text-center px-12">
+                        <p class="text-lg italic mb-4">"Pengalaman yang luar biasa! Budaya dan keramahan warganya membuat saya ingin kembali lagi dan lagi."</p>
+                        <p class="font-semibold">- Anisa Putri, Jakarta</p>
+                    </div>
+                     <div class="w-full flex-shrink-0 text-center px-12">
+                        <p class="text-lg italic mb-4">"Pantai-pantai di Gunungkidul benar-benar surga tersembunyi. Sangat direkomendasikan untuk pecinta alam."</p>
+                        <p class="font-semibold">- Budi Santoso, Surabaya</p>
+                    </div>
+                     <div class="w-full flex-shrink-0 text-center px-12">
+                        <p class="text-lg italic mb-4">"Kulinernya juara! Dari gudeg sampai bakpia, semuanya memanjakan lidah. Wajib coba semua!"</p>
+                        <p class="font-semibold">- Cindy Lim, Medan</p>
+                    </div>
+                </div>
+                <button id="prev-testi" class="absolute top-1/2 left-0 -translate-y-1/2 p-2 rounded-full bg-[var(--bg-secondary)] shadow-md"><i data-lucide="chevron-left" class="w-6 h-6"></i></button>
+                <button id="next-testi" class="absolute top-1/2 right-0 -translate-y-1/2 p-2 rounded-full bg-[var(--bg-secondary)] shadow-md"><i data-lucide="chevron-right" class="w-6 h-6"></i></button>
+            </div>
+        </section>
+
+        <!-- ===== BLOG WISATA ===== -->
+        <section id="blog" class="mb-20 scroll-animation">
+            <h2 class="text-3xl font-bold text-center mb-8">Artikel & Panduan Wisata</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Blog Card -->
+                <div class="bg-[var(--bg-secondary)] rounded-xl overflow-hidden shadow-lg">
+                    <img src="https://placehold.co/600x400/16A34A/FFFFFF?text=Tips+Liburan" alt="Blog Image" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <p class="text-sm text-gray-500 dark:text-gray-400 mb-1">Tips & Trik</p>
+                        <h3 class="text-lg font-semibold mb-2">5 Tips Liburan Hemat di Yogyakarta</h3>
+                        <a href="#" class="text-blue-500 dark:text-blue-400 font-semibold text-sm">Baca Selengkapnya</a>
+                    </div>
+                </div>
+                <!-- Blog Card -->
+                <div class="bg-[var(--bg-secondary)] rounded-xl overflow-hidden shadow-lg">
+                    <img src="https://placehold.co/600x400/D97706/FFFFFF?text=Kuliner+Hidden+Gem" alt="Blog Image" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <p class="text-sm text-gray-500 dark:text-gray-400 mb-1">Kuliner</p>
+                        <h3 class="text-lg font-semibold mb-2">Menjelajahi Kuliner 'Hidden Gem' Jogja</h3>
+                        <a href="#" class="text-blue-500 dark:text-blue-400 font-semibold text-sm">Baca Selengkapnya</a>
+                    </div>
+                </div>
+                <!-- Blog Card -->
+                <div class="bg-[var(--bg-secondary)] rounded-xl overflow-hidden shadow-lg">
+                    <img src="https://placehold.co/600x400/9333EA/FFFFFF?text=Itinerary+3+Hari" alt="Blog Image" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <p class="text-sm text-gray-500 dark:text-gray-400 mb-1">Itinerary</p>
+                        <h3 class="text-lg font-semibold mb-2">Itinerary 3 Hari 2 Malam di Yogyakarta</h3>
+                        <a href="#" class="text-blue-500 dark:text-blue-400 font-semibold text-sm">Baca Selengkapnya</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== KONTAK, RESERVASI & PETA ===== -->
+        <section id="kontak" class="scroll-animation">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+                <div>
+                    <h2 class="text-3xl font-bold mb-4">Hubungi Kami & Reservasi</h2>
+                    <p class="text-gray-600 dark:text-gray-300 mb-6">Punya pertanyaan atau ingin merencanakan perjalanan? Isi formulir di bawah ini.</p>
+                    <!-- Contact/Booking Form -->
+                    <form id="contact-form" class="space-y-4">
+                        <input type="text" placeholder="Nama Lengkap" class="w-full p-3 rounded-md bg-[var(--bg-secondary)] border border-gray-300 dark:border-gray-600" required>
+                        <input type="email" placeholder="Alamat Email" class="w-full p-3 rounded-md bg-[var(--bg-secondary)] border border-gray-300 dark:border-gray-600" required>
+                        <select class="w-full p-3 rounded-md bg-[var(--bg-secondary)] border border-gray-300 dark:border-gray-600">
+                            <option>Pertanyaan Umum</option>
+                            <option>Reservasi Tiket</option>
+                            <option>Saran & Masukan</option>
+                        </select>
+                        <textarea placeholder="Pesan Anda" rows="4" class="w-full p-3 rounded-md bg-[var(--bg-secondary)] border border-gray-300 dark:border-gray-600" required></textarea>
+                        <button type="submit" class="w-full bg-blue-500 text-white p-3 rounded-md font-semibold hover:bg-blue-600 transition">Kirim Pesan</button>
+                    </form>
+                </div>
+                <div>
+                    <!-- Map Integration -->
+                    <div class="w-full h-72 md:h-96 rounded-xl overflow-hidden shadow-lg">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d252968.1666683838!2d110.2246819463991!3d-7.874636306540141!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7a5787bd5b6bc5%3A0x21723fd4d3684f71!2sYogyakarta%2C%20Kota%20Yogyakarta%2C%20Daerah%20Istimewa%20Yogyakarta!5e0!3m2!1sid!2sid!4v1678886543210!5m2!1sid!2sid" 
+                        width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                     <!-- Weather Widget -->
+                    <div class="mt-8 p-6 bg-[var(--bg-secondary)] rounded-xl shadow-lg flex items-center justify-between">
+                        <div>
+                            <p class="font-semibold text-lg">Cuaca Yogyakarta Saat Ini</p>
+                            <p class="text-sm text-gray-500 dark:text-gray-400">Kondisi terkini untuk perjalanan Anda</p>
+                        </div>
+                        <div class="text-right">
+                           <i data-lucide="cloud-sun" class="w-10 h-10 text-yellow-500 inline-block"></i>
+                           <p class="text-2xl font-bold">29°C</p>
+                           <p class="text-sm">Cerah Berawan</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+    
+    <!-- ===== SIDEBAR (Contoh: tersembunyi, muncul saat event) ===== -->
+    <aside id="sidebar" class="fixed top-0 -right-80 h-full w-80 bg-[var(--bg-secondary)] shadow-2xl z-50 transition-all duration-300 p-6">
+        <button id="close-sidebar" class="absolute top-4 right-4"><i data-lucide="x" class="w-6 h-6"></i></button>
+        <h3 class="text-xl font-bold mb-4">Info Tambahan</h3>
+        <ul>
+            <li class="mb-2"><a href="#" class="hover:text-blue-500">Event & Kegiatan</a></li>
+            <li class="mb-2"><a href="#" class="hover:text-blue-500">Fasilitas Pengunjung</a></li>
+            <li class="mb-2"><a href="#" class="hover:text-blue-500">Jadwal Kunjungan</a></li>
+        </ul>
+    </aside>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="bg-[var(--bg-secondary)] py-12">
+        <div class="container mx-auto px-6 text-center">
+            <h3 class="text-2xl font-bold mb-2" style="color: var(--accent);">Pesona Jogja</h3>
+            <p class="max-w-md mx-auto mb-6 text-gray-600 dark:text-gray-300">Platform Anda untuk menemukan keajaiban tersembunyi di Daerah Istimewa Yogyakarta.</p>
+            <div class="flex justify-center space-x-6 mb-8">
+                <a href="#" class="text-gray-500 hover:text-blue-500"><i data-lucide="facebook" class="w-6 h-6"></i></a>
+                <a href="#" class="text-gray-500 hover:text-blue-500"><i data-lucide="instagram" class="w-6 h-6"></i></a>
+                <a href="#" class="text-gray-500 hover:text-blue-500"><i data-lucide="twitter" class="w-6 h-6"></i></a>
+                <a href="#" class="text-gray-500 hover:text-blue-500"><i data-lucide="youtube" class="w-6 h-6"></i></a>
+            </div>
+            <p class="text-sm text-gray-500 dark:text-gray-400">&copy; <span id="year"></span> Pesona Yogyakarta. All Rights Reserved.</p>
+        </div>
+    </footer>
+    
+    <!-- ===== CHATBOT / LIVE CHAT ===== -->
+    <div id="chatbot-container" class="fixed bottom-5 right-5 z-40">
+        <button id="chatbot-toggle" class="bg-blue-500 text-white w-14 h-14 rounded-full shadow-lg flex items-center justify-center">
+            <i id="chatbot-icon-open" data-lucide="message-circle" class="w-8 h-8"></i>
+            <i id="chatbot-icon-close" data-lucide="x" class="w-8 h-8 hidden"></i>
+        </button>
+        <div id="chatbot-window" class="hidden absolute bottom-20 right-0 w-80 h-96 bg-[var(--bg-secondary)] rounded-xl shadow-2xl flex flex-col">
+            <div class="p-4 bg-blue-500 text-white rounded-t-xl">
+                <h4 class="font-semibold">Panduan Wisata Virtual</h4>
+            </div>
+            <div class="flex-grow p-4 overflow-y-auto">
+                <!-- Chat messages -->
+                <div class="mb-2 text-sm">
+                    <span class="bg-gray-200 dark:bg-gray-600 rounded-lg px-3 py-2 inline-block">Halo! Ada yang bisa saya bantu untuk rencana liburan Anda di Jogja?</span>
+                </div>
+            </div>
+            <div class="p-2 border-t border-gray-200 dark:border-gray-600">
+                <input type="text" placeholder="Ketik pesan..." class="w-full text-sm p-2 rounded-md bg-gray-100 dark:bg-gray-800 focus:outline-none">
+            </div>
+        </div>
+    </div>
+    
+    <!-- Virtual Tour Modal -->
+    <div id="modal-container" class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 hidden">
+        <div class="bg-[var(--bg-secondary)] rounded-lg w-11/12 md:w-3/4 lg:w-2/3 max-w-4xl relative">
+             <button id="close-modal" class="absolute -top-3 -right-3 bg-white text-black w-8 h-8 rounded-full">&times;</button>
+             <div class="aspect-w-16 aspect-h-9">
+                <iframe src="https://www.google.com/maps/embed?pb=!4v1633512217734!6m8!1m7!1sCAoSLEFGMVFpcE5uV3ZRSUJYd3VvM1dFNm5fQkZkdnRkLVhCTEt5bVN6V1dfLU1m!2m2!1d-7.7520209!2d110.4914173!3f350.31!4f0!5f0.7820865821838379" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        lucide.createIcons();
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const body = document.body;
+            
+            // ===== DARK/LIGHT MODE TOGGLE =====
+            const themeToggle = document.getElementById('theme-toggle');
+            const themeIcon = document.getElementById('theme-icon');
+            const currentTheme = localStorage.getItem('theme');
+
+            if (currentTheme === 'dark') {
+                body.classList.replace('light-mode', 'dark-mode');
+                themeIcon.setAttribute('data-lucide', 'moon');
+            } else {
+                themeIcon.setAttribute('data-lucide', 'sun');
+            }
+            lucide.createIcons();
+            
+            themeToggle.addEventListener('click', () => {
+                body.classList.toggle('dark-mode');
+                body.classList.toggle('light-mode');
+                
+                let theme = 'light';
+                if (body.classList.contains('dark-mode')) {
+                    theme = 'dark';
+                    themeIcon.setAttribute('data-lucide', 'moon');
+                } else {
+                    themeIcon.setAttribute('data-lucide', 'sun');
                 }
-            };
-        }
+                localStorage.setItem('theme', theme);
+                lucide.createIcons();
+            });
 
-        // Edit panel values mapping
-        function mapToEditPanelValues(config) {
-            return new Map([
-                ['site_title', config.site_title || defaultConfig.site_title],
-                ['hero_title', config.hero_title || defaultConfig.hero_title],
-                ['hero_subtitle', config.hero_subtitle || defaultConfig.hero_subtitle],
-                ['contact_title', config.contact_title || defaultConfig.contact_title]
-            ]);
-        }
+            // ===== NAVBAR & MOBILE MENU =====
+            const header = document.getElementById('header');
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    header.classList.add('shadow-md', 'bg-[var(--bg-secondary)]');
+                } else {
+                    header.classList.remove('shadow-md', 'bg-[var(--bg-secondary)]');
+                }
+            });
 
-        // Setup event listeners
-        function setupEventListeners() {
-            // Mobile menu toggle
-            document.getElementById('mobile-menu-toggle').addEventListener('click', () => {
-                const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenuButton.addEventListener('click', () => {
                 mobileMenu.classList.toggle('hidden');
             });
 
-            // Dark mode toggle
-            document.getElementById('dark-mode-toggle').addEventListener('click', toggleDarkMode);
-
-            // Language switcher
-            document.getElementById('language-switcher').addEventListener('change', (e) => {
-                switchLanguage(e.target.value);
-            });
-
-            // Search functionality
-            document.getElementById('search-btn').addEventListener('click', performSearch);
-            document.getElementById('search-input').addEventListener('keypress', (e) => {
-                if (e.key === 'Enter') performSearch();
-            });
-
-            // Filter buttons
-            document.querySelectorAll('.filter-btn').forEach(btn => {
-                btn.addEventListener('click', (e) => {
-                    filterDestinations(e.target.dataset.filter);
-                    updateFilterButtons(e.target);
-                });
-            });
-
-            // Carousel dots
-            document.querySelectorAll('.carousel-dot').forEach(dot => {
-                dot.addEventListener('click', (e) => {
-                    goToSlide(parseInt(e.target.dataset.slide));
-                });
-            });
-
-            // Rating stars
-            document.querySelectorAll('.rating-star').forEach(star => {
-                star.addEventListener('click', (e) => {
-                    setRating(parseInt(e.target.dataset.rating));
-                });
-            });
-
-            // Forms
-            document.getElementById('contact-form').addEventListener('submit', handleContactForm);
-            document.getElementById('booking-form').addEventListener('submit', handleBookingForm);
-            document.getElementById('feedback-form').addEventListener('submit', handleFeedbackForm);
-
-            // Chatbot
-            document.getElementById('chatbot-toggle').addEventListener('click', toggleChatbot);
-            document.getElementById('chatbot-close').addEventListener('click', closeChatbot);
-            document.getElementById('chatbot-send').addEventListener('click', sendChatMessage);
-            document.getElementById('chatbot-input').addEventListener('keypress', (e) => {
-                if (e.key === 'Enter') sendChatMessage();
-            });
-
-            // Video modal
-            document.getElementById('virtual-tour-btn').addEventListener('click', () => openVideoModal());
-            document.getElementById('close-video').addEventListener('click', closeVideoModal);
-
-            // Sidebar
-            document.getElementById('sidebar-close').addEventListener('click', closeSidebar);
-            document.getElementById('sidebar-overlay').addEventListener('click', closeSidebar);
-
-            // Smooth scrolling for navigation links
-            document.querySelectorAll('a[href^="#"]').forEach(link => {
-                link.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    const target = document.querySelector(e.target.getAttribute('href'));
-                    if (target) {
-                        target.scrollIntoView({ behavior: 'smooth' });
-                    }
-                });
-            });
-        }
-
-        // Dark mode functionality
-        function toggleDarkMode() {
-            isDarkMode = !isDarkMode;
-            document.documentElement.classList.toggle('dark', isDarkMode);
-            localStorage.setItem('darkMode', isDarkMode);
+            // ===== LANGUAGE SWITCHER =====
+            const langSwitcher = document.getElementById('lang-switcher');
+            const langMenu = document.getElementById('lang-menu');
+            const currentLang = document.getElementById('current-lang');
             
-            const icon = document.querySelector('#dark-mode-toggle i');
-            icon.className = isDarkMode ? 'fas fa-sun' : 'fas fa-moon';
-        }
-
-        function checkDarkMode() {
-            const savedMode = localStorage.getItem('darkMode');
-            if (savedMode === 'true') {
-                isDarkMode = true;
-                document.documentElement.classList.add('dark');
-                document.querySelector('#dark-mode-toggle i').className = 'fas fa-sun';
-            }
-        }
-
-        // Language switching
-        function switchLanguage(lang) {
-            currentLanguage = lang;
-            updateLanguageContent();
-        }
-
-        function updateLanguageContent() {
-            const t = translations[currentLanguage];
+            langSwitcher.addEventListener('click', () => {
+                langMenu.classList.toggle('hidden');
+            });
             
-            // Update navigation
-            document.querySelectorAll('nav a').forEach((link, index) => {
-                const keys = ['home', 'destinations', 'gallery', 'events', 'blog', 'contact'];
-                if (keys[index] && t[keys[index]]) {
-                    link.textContent = t[keys[index]];
+            langMenu.addEventListener('click', (e) => {
+                if(e.target.tagName === 'A') {
+                    currentLang.textContent = e.target.dataset.lang;
+                    langMenu.classList.add('hidden');
                 }
             });
-
-            // Update buttons
-            const exploreBtn = document.getElementById('explore-btn');
-            const virtualTourBtn = document.getElementById('virtual-tour-btn');
-            if (exploreBtn) exploreBtn.textContent = t.explore_now;
-            if (virtualTourBtn) virtualTourBtn.textContent = t.virtual_tour;
-
-            // Update filter buttons
-            document.querySelectorAll('.filter-btn').forEach(btn => {
-                const filter = btn.dataset.filter;
-                if (t[filter]) btn.textContent = t[filter];
-            });
-        }
-
-        // Search functionality
-        function performSearch() {
-            const query = document.getElementById('search-input').value.toLowerCase();
-            const cards = document.querySelectorAll('.destination-card');
             
-            cards.forEach(card => {
-                const title = card.querySelector('h3').textContent.toLowerCase();
-                const description = card.querySelector('p').textContent.toLowerCase();
-                
-                if (title.includes(query) || description.includes(query)) {
-                    card.style.display = 'block';
-                } else {
-                    card.style.display = 'none';
-                }
-            });
-        }
-
-        // Filter destinations
-        function filterDestinations(category) {
-            const cards = document.querySelectorAll('.destination-card');
-            
-            cards.forEach(card => {
-                if (category === 'all' || card.dataset.category === category) {
-                    card.style.display = 'block';
-                } else {
-                    card.style.display = 'none';
-                }
-            });
-        }
-
-        function updateFilterButtons(activeBtn) {
-            document.querySelectorAll('.filter-btn').forEach(btn => {
-                btn.classList.remove('active', 'bg-blue-600', 'text-white');
-                btn.classList.add('bg-gray-200', 'dark:bg-gray-700');
-            });
-            
-            activeBtn.classList.add('active', 'bg-blue-600', 'text-white');
-            activeBtn.classList.remove('bg-gray-200', 'dark:bg-gray-700');
-        }
-
-        // Scroll animations
-        function setupScrollAnimations() {
+            // ===== SCROLL ANIMATION =====
+            const animatedElements = document.querySelectorAll('.scroll-animation');
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
+                        entry.target.classList.add('animate');
                     }
                 });
             }, { threshold: 0.1 });
 
-            document.querySelectorAll('.fade-in').forEach(el => {
-                observer.observe(el);
-            });
-        }
-
-        // Counter animation
-        function setupCounters() {
-            const counters = document.querySelectorAll('.counter');
+            animatedElements.forEach(el => observer.observe(el));
             
-            const observer = new IntersectionObserver((entries) => {
+            // ===== COUNTER / STATISTIK =====
+            const counters = document.querySelectorAll('.counter');
+            const speed = 200; 
+
+            const animateCounter = (counter) => {
+                const target = +counter.getAttribute('data-target');
+                const updateCount = () => {
+                    const count = +counter.innerText;
+                    const inc = target / speed;
+
+                    if (count < target) {
+                        counter.innerText = Math.ceil(count + inc);
+                        setTimeout(updateCount, 1);
+                    } else {
+                        counter.innerText = target;
+                    }
+                };
+                updateCount();
+            };
+            
+            const counterObserver = new IntersectionObserver((entries, observer) => {
                 entries.forEach(entry => {
-                    if (entry.isIntersecting) {
+                    if(entry.isIntersecting) {
                         animateCounter(entry.target);
                         observer.unobserve(entry.target);
                     }
                 });
+            }, { threshold: 0.5 });
+            counters.forEach(counter => counterObserver.observe(counter));
+
+
+            // ===== DESTINASI FILTER =====
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            const destinationCards = document.querySelectorAll('.destination-card');
+
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    filterBtns.forEach(b => b.classList.remove('active', 'bg-blue-500', 'text-white'));
+                    btn.classList.add('active', 'bg-blue-500', 'text-white');
+
+                    const filter = btn.dataset.filter;
+                    destinationCards.forEach(card => {
+                        if (filter === 'all' || card.dataset.category === filter) {
+                            card.style.display = 'block';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
             });
 
-            counters.forEach(counter => observer.observe(counter));
-        }
+            // ===== TESTIMONIAL CAROUSEL =====
+            const carousel = document.getElementById('testimonial-carousel');
+            const prevBtn = document.getElementById('prev-testi');
+            const nextBtn = document.getElementById('next-testi');
+            const testimonials = carousel.children;
+            let currentIndex = 0;
 
-        function animateCounter(element) {
-            const target = parseInt(element.dataset.target);
-            const duration = 2000;
-            const step = target / (duration / 16);
-            let current = 0;
+            function updateCarousel() {
+                carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
+            }
 
-            const timer = setInterval(() => {
-                current += step;
-                if (current >= target) {
-                    element.textContent = target;
-                    clearInterval(timer);
-                } else {
-                    element.textContent = Math.floor(current);
-                }
-            }, 16);
-        }
+            nextBtn.addEventListener('click', () => {
+                currentIndex = (currentIndex + 1) % testimonials.length;
+                updateCarousel();
+            });
 
-        // Carousel functionality
-        function setupCarousel() {
+            prevBtn.addEventListener('click', () => {
+                currentIndex = (currentIndex - 1 + testimonials.length) % testimonials.length;
+                updateCarousel();
+            });
+            
             setInterval(() => {
-                currentTestimonial = (currentTestimonial + 1) % 2;
-                goToSlide(currentTestimonial);
-            }, 5000);
-        }
+               nextBtn.click();
+            }, 5000); // Auto-slide every 5 seconds
 
-        function goToSlide(index) {
-            const track = document.getElementById('testimonial-track');
-            const dots = document.querySelectorAll('.carousel-dot');
-            
-            track.style.transform = `translateX(-${index * 100}%)`;
-            
-            dots.forEach((dot, i) => {
-                if (i === index) {
-                    dot.classList.add('bg-blue-600');
-                    dot.classList.remove('bg-gray-300');
-                } else {
-                    dot.classList.remove('bg-blue-600');
-                    dot.classList.add('bg-gray-300');
-                }
+            // ===== CHATBOT =====
+            const chatbotToggle = document.getElementById('chatbot-toggle');
+            const chatbotWindow = document.getElementById('chatbot-window');
+            const openIcon = document.getElementById('chatbot-icon-open');
+            const closeIcon = document.getElementById('chatbot-icon-close');
+
+            chatbotToggle.addEventListener('click', () => {
+                chatbotWindow.classList.toggle('hidden');
+                openIcon.classList.toggle('hidden');
+                closeIcon.classList.toggle('hidden');
             });
             
-            currentTestimonial = index;
-        }
+            // ===== VIRTUAL TOUR MODAL =====
+            const modalContainer = document.getElementById('modal-container');
+            const openModalBtn = document.getElementById('virtual-tour-btn');
+            const closeModalBtn = document.getElementById('close-modal');
 
-        // Rating functionality
-        function setRating(rating) {
-            selectedRating = rating;
-            document.getElementById('feedback-rating').value = rating;
-            
-            document.querySelectorAll('.rating-star').forEach((star, index) => {
-                if (index < rating) {
-                    star.classList.add('text-yellow-400');
-                    star.classList.remove('text-gray-300');
-                } else {
-                    star.classList.remove('text-yellow-400');
-                    star.classList.add('text-gray-300');
+            openModalBtn.addEventListener('click', () => modalContainer.classList.remove('hidden'));
+            closeModalBtn.addEventListener('click', () => modalContainer.classList.add('hidden'));
+            modalContainer.addEventListener('click', (e) => {
+                if (e.target === modalContainer) {
+                    modalContainer.classList.add('hidden');
                 }
             });
-        }
 
-        // Form handlers
-        async function handleContactForm(e) {
-            e.preventDefault();
+            // ===== SET CURRENT YEAR IN FOOTER =====
+            document.getElementById('year').textContent = new Date().getFullYear();
             
-            const submitBtn = document.getElementById('contact-btn-text');
-            const loading = document.getElementById('contact-loading');
-            
-            submitBtn.textContent = 'Mengirim...';
-            loading.classList.remove('hidden');
-            
-            const formData = {
-                id: Date.now().toString(),
-                name: document.getElementById('contact-name').value,
-                email: document.getElementById('contact-email').value,
-                message: document.getElementById('contact-subject').value + ' - ' + document.getElementById('contact-message').value,
-                type: 'contact',
-                timestamp: new Date().toISOString()
-            };
-
-            if (window.dataSdk) {
-                const result = await window.dataSdk.create(formData);
-                
-                if (result.isOk) {
-                    showToast('Pesan berhasil dikirim! Kami akan segera menghubungi Anda.', 'success');
-                    document.getElementById('contact-form').reset();
-                } else {
-                    showToast('Gagal mengirim pesan. Silakan coba lagi.', 'error');
-                }
-            }
-            
-            submitBtn.textContent = 'Kirim Pesan';
-            loading.classList.add('hidden');
-        }
-
-        async function handleBookingForm(e) {
-            e.preventDefault();
-            
-            const submitBtn = document.getElementById('booking-btn-text');
-            const loading = document.getElementById('booking-loading');
-            
-            submitBtn.textContent = 'Memproses...';
-            loading.classList.remove('hidden');
-            
-            const formData = {
-                id: Date.now().toString(),
-                name: document.getElementById('booking-name').value,
-                email: document.getElementById('booking-email').value,
-                destination: document.getElementById('booking-destination').value,
-                message: `Booking: ${document.getElementById('booking-destination').value} - ${document.getElementById('booking-date').value} - ${document.getElementById('booking-guests').value} orang`,
-                type: 'booking',
-                timestamp: new Date().toISOString()
-            };
-
-            if (window.dataSdk) {
-                const result = await window.dataSdk.create(formData);
-                
-                if (result.isOk) {
-                    showToast('Reservasi berhasil dikirim! Kami akan mengkonfirmasi dalam 24 jam.', 'success');
-                    document.getElementById('booking-form').reset();
-                } else {
-                    showToast('Gagal mengirim reservasi. Silakan coba lagi.', 'error');
-                }
-            }
-            
-            submitBtn.textContent = 'Kirim Reservasi';
-            loading.classList.add('hidden');
-        }
-
-        async function handleFeedbackForm(e) {
-            e.preventDefault();
-            
-            if (selectedRating === 0) {
-                showToast('Silakan berikan rating terlebih dahulu.', 'error');
-                return;
-            }
-            
-            const submitBtn = document.getElementById('feedback-btn-text');
-            const loading = document.getElementById('feedback-loading');
-            
-            submitBtn.textContent = 'Mengirim...';
-            loading.classList.remove('hidden');
-            
-            const formData = {
-                id: Date.now().toString(),
-                name: document.getElementById('feedback-name').value || 'Anonim',
-                email: '',
-                message: document.getElementById('feedback-message').value,
-                rating: selectedRating,
-                type: 'feedback',
-                timestamp: new Date().toISOString()
-            };
-
-            if (window.dataSdk) {
-                const result = await window.dataSdk.create(formData);
-                
-                if (result.isOk) {
-                    showToast('Terima kasih atas feedback Anda!', 'success');
-                    document.getElementById('feedback-form').reset();
-                    setRating(0);
-                } else {
-                    showToast('Gagal mengirim feedback. Silakan coba lagi.', 'error');
-                }
-            }
-            
-            submitBtn.textContent = 'Kirim Feedback';
-            loading.classList.add('hidden');
-        }
-
-        // Chatbot functionality
-        function toggleChatbot() {
-            const window = document.getElementById('chatbot-window');
-            window.classList.toggle('hidden');
-        }
-
-        function closeChatbot() {
-            document.getElementById('chatbot-window').classList.add('hidden');
-        }
-
-        function sendChatMessage() {
-            const input = document.getElementById('chatbot-input');
-            const message = input.value.trim();
-            
-            if (!message) return;
-            
-            addChatMessage(message, 'user');
-            input.value = '';
-            
-            // Simulate bot response
-            setTimeout(() => {
-                const responses = [
-                    'Terima kasih atas pertanyaannya! Untuk informasi lebih detail, silakan hubungi customer service kami.',
-                    'Saya akan membantu Anda menemukan destinasi terbaik di Yogyakarta. Ada preferensi khusus?',
-                    'Untuk reservasi dan booking, silakan gunakan form yang tersedia di website ini.',
-                    'Yogyakarta memiliki banyak tempat menarik. Apakah Anda tertarik dengan wisata budaya atau alam?'
-                ];
-                const randomResponse = responses[Math.floor(Math.random() * responses.length)];
-                addChatMessage(randomResponse, 'bot');
-            }, 1000);
-        }
-
-        function addChatMessage(message, sender) {
-            const messagesContainer = document.getElementById('chatbot-messages');
-            const messageDiv = document.createElement('div');
-            
-            if (sender === 'user') {
-                messageDiv.className = 'bg-blue-600 text-white p-3 rounded-lg mb-2 ml-8';
-            } else {
-                messageDiv.className = 'bg-gray-100 dark:bg-gray-700 p-3 rounded-lg mb-2 mr-8';
-            }
-            
-            messageDiv.innerHTML = `<p class="text-sm">${message}</p>`;
-            messagesContainer.appendChild(messageDiv);
-            messagesContainer.scrollTop = messagesContainer.scrollHeight;
-        }
-
-        // Modal functions
-        function openImageModal(title) {
-            showToast(`Membuka galeri: ${title}`, 'info');
-        }
-
-        function openVideoModal() {
-            document.getElementById('video-overlay').style.display = 'flex';
-        }
-
-        function closeVideoModal() {
-            document.getElementById('video-overlay').style.display = 'none';
-        }
-
-        function openVirtualTour(destination) {
-            showToast(`Memulai Virtual Tour: ${destination}`, 'info');
-        }
-
-        // Social media sharing
-        function shareToSocial(platform) {
-            const url = window.location.href;
-            const text = 'Jelajahi keindahan Yogyakarta bersama kami!';
-            
-            let shareUrl = '';
-            
-            switch(platform) {
-                case 'facebook':
-                    shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`;
-                    break;
-                case 'twitter':
-                    shareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`;
-                    break;
-                case 'instagram':
-                    showToast('Silakan buka Instagram dan bagikan link ini!', 'info');
-                    return;
-                case 'youtube':
-                    showToast('Kunjungi channel YouTube kami untuk video wisata!', 'info');
-                    return;
-            }
-            
-            if (shareUrl) {
-                window.open(shareUrl, '_blank', 'noopener,noreferrer');
-            }
-        }
-
-        // Sidebar functions
-        function openSidebar() {
-            document.getElementById('sidebar').classList.remove('-translate-x-full');
-            document.getElementById('sidebar-overlay').classList.remove('hidden');
-        }
-
-        function closeSidebar() {
-            document.getElementById('sidebar').classList.add('-translate-x-full');
-            document.getElementById('sidebar-overlay').classList.add('hidden');
-        }
-
-        // Toast notification
-        function showToast(message, type = 'info') {
-            const toast = document.createElement('div');
-            toast.className = `fixed top-4 right-4 z-50 p-4 rounded-lg shadow-lg text-white transform transition-all duration-300 translate-x-full`;
-            
-            switch(type) {
-                case 'success':
-                    toast.classList.add('bg-green-600');
-                    break;
-                case 'error':
-                    toast.classList.add('bg-red-600');
-                    break;
-                case 'info':
-                default:
-                    toast.classList.add('bg-blue-600');
-                    break;
-            }
-            
-            toast.innerHTML = `
-                <div class="flex items-center space-x-2">
-                    <i class="fas fa-${type === 'success' ? 'check' : type === 'error' ? 'exclamation' : 'info'}-circle"></i>
-                    <span>${message}</span>
-                </div>
-            `;
-            
-            document.body.appendChild(toast);
-            
-            setTimeout(() => {
-                toast.classList.remove('translate-x-full');
-            }, 100);
-            
-            setTimeout(() => {
-                toast.classList.add('translate-x-full');
-                setTimeout(() => {
-                    document.body.removeChild(toast);
-                }, 300);
-            }, 3000);
-        }
-
-        // Initialize app when DOM is loaded
-        document.addEventListener('DOMContentLoaded', initApp);
+            // ===== CONTACT FORM SUBMISSION =====
+            const contactForm = document.getElementById('contact-form');
+            contactForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                alert('Terima kasih! Pesan Anda telah terkirim.');
+                contactForm.reset();
+            });
+        });
     </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'98f495a5f42ffcf7',t:'MTc2MDU4NjU0OC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</body>
 </html>
